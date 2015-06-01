@@ -10,13 +10,5 @@ seajs.use(['jquery','compile'],function($,Compile){
 	$(function(){
 		$("#content").append(html);
 	});
-//	document.getElementById('content').innerHTML = html;
-	
-//	$(function(){
-//		
-//		$("#content").append(html);
-//	
-//	});
-	
-	
+		
 });

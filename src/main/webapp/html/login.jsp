@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet"> 
+    <script src="../js/sea.js"></script>
+    <script src="../tool/config.js"></script>
+    <script src="js/login.js"></script>
     <title>Login</title>	
   </head>
   
@@ -32,7 +33,7 @@
 	    </label>
 	  </div>
 	  
-	  <button type="submit" class="btn btn-default">Sign in</button>
+	  <button id="signin" type="submit" class="btn btn-default">Sign in</button>
 	  
 	</form>
 	</div>

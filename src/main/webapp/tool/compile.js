@@ -1,3 +1,8 @@
+/**
+ * jsƒ£∞Â±‡“Îπ§æﬂ
+ * author:sdyang
+ * date  :2015-06-01
+ */
 define(function(require, exports, module) {
 
 	function compile(tplFile,data){
@@ -7,7 +12,6 @@ define(function(require, exports, module) {
 		if(tplFile == "test.tpl"){
 			tplSource=require("../tool/tpl/test.tpl");
 		}
-		alert(tplSource);
     	var render = template.compile(tplSource);
     	var html = render(data);
     	return html;
