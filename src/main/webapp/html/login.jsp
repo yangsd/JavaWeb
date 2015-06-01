@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet"> 
-    <script src="../js/sea.js"></script>
+    <script src="../plugins/sea.js"></script>
     <script src="../tool/config.js"></script>
     <script src="js/login.js"></script>
     <title>Login</title>	

@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 		
 		tplSource = "";
 		if(tplFile == "test.tpl"){
-			tplSource=require("../tool/tpl/test.tpl");
+			tplSource=require("../tpl/test.tpl");
 		}
     	var render = template.compile(tplSource);
     	var html = render(data);
