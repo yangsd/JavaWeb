@@ -4,7 +4,7 @@
 <h1>{{title}}</h1>
 <ul>
     {{each list as value i}}
-        <li>Ë÷Òý {{i + 1}} £º{{value}}</li>
+        <li>ç´¢å¼•{{i + 1}} ï¼š{{value}}</li>
     {{/each}}
 </ul>
 

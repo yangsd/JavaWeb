@@ -1,13 +1,22 @@
 seajs.use(['jquery','compile'],function($,Compile){
-	
-	//var compile = new Compile();
+		
 	var data = {
 			title: '基本例子',
 			isAdmin: true,
-			list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']};
+			list: ['苹果', '香梨', '橘子', '香蕉', '葡萄']};
 	
-	var html = Compile.compile("JavaWeb/tool/tpl/test.tpl",data);
-	$("#content").append(html);
+	var html = Compile.compile("test.tpl",data);
+
+	$(function(){
+		$("#content").append(html);
+	});
+//	document.getElementById('content').innerHTML = html;
+	
+//	$(function(){
+//		
+//		$("#content").append(html);
+//	
+//	});
 	
 	
 });

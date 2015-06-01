@@ -1,13 +1,13 @@
 define(function(require, exports, module) {
-	
-	
-	
-	function compile(tplPath,data){
-		var $ = require('jquery');
-		var template = require("template");
-    	tplSource=require(tplPath);
-    	alert(tplPath + ":"+tplSource);
 
+	function compile(tplFile,data){
+		var template = require("template");
+		
+		tplSource = "";
+		if(tplFile == "test.tpl"){
+			tplSource=require("../tool/tpl/test.tpl");
+		}
+		alert(tplSource);
     	var render = template.compile(tplSource);
     	var html = render(data);
     	return html;
