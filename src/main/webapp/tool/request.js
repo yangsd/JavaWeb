@@ -1,6 +1,20 @@
-
+/**
+ * http请求 
+ * author:sdyang
+ * date:2015-06-01
+ */
 define(function  (require, exports, module) {
 	var $ =require("jquery");
+	
+	
+	function get(url,data,success){
+		$.ajax({
+			  url: url,
+			  data: data,
+			  success: success,
+			  dataType: "json"
+			});
+	}
 	
 	/**
 	 * 
