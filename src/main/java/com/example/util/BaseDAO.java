@@ -4,7 +4,11 @@ import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+/**
+ * 
+ * @author sdyang
+ * @date 2015年6月3日 下午5:32:36
+ */
 public class BaseDAO {
 
 	private SessionFactory sessionFactory;

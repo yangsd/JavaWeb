@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/**
+ * 用户
+ * @author sdyang
+ * @date 2015年6月3日 下午5:34:39
+ */
 @Entity(name="user")
 public class User {
 	

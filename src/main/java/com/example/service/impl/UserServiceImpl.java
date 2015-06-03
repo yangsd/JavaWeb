@@ -8,7 +8,11 @@ import com.example.exception.BusinessException;
 import com.example.model.User;
 import com.example.service.itf.IUserService;
 import com.example.util.BaseDAO;
-
+/**
+ * 
+ * @author sdyang
+ * @date 2015年6月3日 下午5:34:29
+ */
 @Service("userService")
 public class UserServiceImpl extends BaseDAO implements IUserService {
 
