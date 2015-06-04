@@ -69,8 +69,10 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
   
-   <!-- 配置事务异常封装 -->
+  <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
     
+   <!-- 配置事务异常封装 -->   
    <bean id="persistenceExceptionTranslationPostProcessor" 
        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />  
    

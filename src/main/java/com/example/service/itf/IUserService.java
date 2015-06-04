@@ -10,6 +10,7 @@ import com.example.model.User;
  * @author sdyang
  * @date 2015年6月3日 下午3:07:31
  */
+
 public interface IUserService {
 
 	public void saveUser(User user) throws BusinessException;

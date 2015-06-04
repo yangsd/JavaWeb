@@ -3,6 +3,7 @@ package com.example.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.exception.BusinessException;
 import com.example.model.User;
@@ -13,6 +14,7 @@ import com.example.util.BaseDAO;
  * @author sdyang
  * @date 2015年6月3日 下午5:34:29
  */
+@Transactional
 @Service("userService")
 public class UserServiceImpl extends BaseDAO implements IUserService {
 
