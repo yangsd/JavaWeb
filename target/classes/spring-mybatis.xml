@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        ">  
+    
+   <context:property-placeholder location="classpath:database.properties" />
+    
+   <!-- 使用dbcp地址池 -->
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+        <property name="driverClassName" value="${jdbc.driverClassName}" />  
+        <property name="url"             value="${jdbc.url}" />  
+        <property name="username"        value="${jdbc.username}" />  
+        <property name="password" 		 value="${jdbc.password}" />  
+        <property name="minIdle"         value="${jdbc.minIdle}" />        <!-- 队列中的最小等待数 -->  
+        <property name="maxIdle"         value="${jdbc.maxIdle}" />        <!-- 队列中的最大等待数 -->  
+        <property name="maxWait"         value="${jdbc.maxWait}" />        <!-- 最长等待时间，单位毫秒 -->  
+        <property name="maxActive"       value="${jdbc.maxActive}" />      <!-- 最大活跃数 -->  
+        <property name="initialSize"     value="${jdbc.initialSize}" />    <!--  初始大小 -->   
+    </bean>  
+   
+    <!-- 配置事务管理 -->     
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource" />
+   </bean>
+  
+   <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-configuration.xml"></property>  
+        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"></property> 
+    </bean>  
+  
+    <!-- 配置SQLSession模板 -->  
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">  
+        <constructor-arg index="0" ref="sqlSessionFactory" />  
+    </bean>  
+    
+   <!-- 配置事务异常封装 -->   
+   <bean id="persistenceExceptionTranslationPostProcessor" 
+       class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />  
+   
+</beans> 

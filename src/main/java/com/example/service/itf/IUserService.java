@@ -3,7 +3,7 @@ package com.example.service.itf;
 import java.util.List;
 
 import com.example.exception.BusinessException;
-import com.example.model.User;
+import com.example.vo.User;
 
 /**
  * 用户基础服务类

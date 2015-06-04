@@ -1,9 +1,8 @@
 package com.example.util;
 
-import javax.annotation.Resource;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 /**
  * 
  * @author sdyang
@@ -11,22 +10,17 @@ import org.hibernate.SessionFactory;
  */
 public class BaseDAO {
 
-	private SessionFactory sessionFactory;
+	/**
+	 * 默认按照类型进行注入,必须注入值，不能为null,
+	 */
+	@Autowired(required = true)
+	public SqlSession sqlSession;
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+	/*
+	 * public SqlSession getSqlSession() { return sqlSession; }
+	 * 
+	 * @Resource(name = "sqlSession") public void setSqlSession(SqlSession
+	 * sqlSession) { this.sqlSession = sqlSession; }
+	 */
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	@Resource(name = "sessionFactory")
-	public void setSuperSessionFactory(SessionFactory sessionFactory) {
-		this.setSessionFactory(sessionFactory);
-	}
-
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
 }

@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.exception.BusinessException;
-import com.example.model.User;
 import com.example.service.itf.IUserService;
+import com.example.vo.User;
 /**
  * Contoller≤‚ ‘
  * @author sdyang
@@ -35,7 +33,8 @@ public class LoginController {
 	    	user.setName("sdyang");
 	    	try {
 	    		//userService.saveUser(user);
-	    		List<User> users = userService.getAllUser();
+	    		//List<User> users = userService.getAllUser();
+	    		userService.getUserById(1);
 					    		
 			} catch (BusinessException e) {
 				e.printStackTrace();
