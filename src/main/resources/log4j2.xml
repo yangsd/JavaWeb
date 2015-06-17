@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off">
+	<appenders>	 
+	    <!-- 窗口输出，输出所有信息 -->   
+		<Console name = "Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}[%t]%-5level %logger{36} -%msg%n"/>			
+		</Console>	
+	    <!-- 文件输出，记录发送邮件的信息 -->
+		<File name = "file" fileName = "log/sendMail.log" append = "true">
+			<PatternLayout pattern = "%d{yyyy-MM-dd HH:mm:ss} %t %-5p %c{2} -%m%n"/>
+		</File>	
+		<!-- 滚动日志文件，记录程序运行过程 -->
+        <RollingFile name="RollingFile" fileName="log/run.log"    
+                     filePattern="log/$${date:yyyy-MM-dd}/runLog-%d{yyyy.MM.dd}.log.gz">    
+          <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}[%t]%-5level %logger{36} -%msg%n"/>             
+          <!-- 按时间进行日志滚动 -->
+          <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+          
+          <!-- 按文件大小进行日志滚动 --> 
+          <!--                  
+          <SizeBasedTriggeringPolicy size="10M" />  
+          -->              
+        </RollingFile>  		
+	</appenders>
+	<loggers>
+	 <!--  additivity="false" additivity="false"  -->
+	 <!-- 
+	    <Logger name = "com.bi.data.DAO.SendBiData" level = "trace">
+	   		 <appender-ref ref="file"/>
+	    </Logger>
+	   -->
+		<root level="trace">
+			<appender-ref ref="RollingFile" level = "trace"/>
+			<appender-ref ref="Console" level = "trace"/>	
+		</root>
+	</loggers>
+</configuration>

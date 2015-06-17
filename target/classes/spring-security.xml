@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/security 
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<!--  Spring-Security 的配置 -->
+	<!-- 注意开启use-expressions.表示开启表达式.
+	see:http://www.family168.com/tutorial/springsecurity3/html/el-access.html
+	 -->
+	<security:http auto-config="true" use-expressions="true" access-denied-page="/html/denied" >
+		
+		<security:intercept-url pattern="/html/login" access="permitAll"/>
+		<security:intercept-url pattern="/html/admin" access="hasRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/html/common" access="hasRole('ROLE_USER')"/>
+		
+		<security:form-login
+				login-page="/html/login" 
+				authentication-failure-url="/html/login?error=true" 
+				default-target-url="/html/common"/>
+			
+		<security:logout 
+				invalidate-session="true" 
+				logout-success-url="/html/login" 
+				logout-url="/html/logout"/>
+	
+	</security:http>
+	
+	<!-- 指定一个自定义的authentication-manager :myUserDetailsService -->
+	<security:authentication-manager>
+	        <security:authentication-provider user-service-ref="myUserDetailsService">
+	        		<security:password-encoder ref="passwordEncoder"/>
+	        </security:authentication-provider>
+	</security:authentication-manager>
+	
+	<!-- 对密码进行MD5编码 -->
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+
+	<bean id="myUserDetailsService" class="com.example.service.impl.MyUserDetailsService"/>
+	
+</beans>
+

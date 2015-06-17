@@ -3,7 +3,7 @@ package com.example.service.itf;
 import java.util.List;
 
 import com.example.exception.BusinessException;
-import com.example.vo.User;
+import com.example.vo.UserVO;
 
 /**
  * 用户基础服务类
@@ -13,13 +13,13 @@ import com.example.vo.User;
 
 public interface IUserService {
 
-	public void saveUser(User user) throws BusinessException;
+	public void saveUser(UserVO user) throws BusinessException;
 
-	public void delUser(User user) throws BusinessException;
+	public void delUser(UserVO user) throws BusinessException;
 
-	public void editUsre(User user) throws BusinessException;
+	public void editUsre(UserVO user) throws BusinessException;
 
-	public User getUserById(int id) throws BusinessException;
+	public UserVO getUserById(int id) throws BusinessException;
 	
-	public List<User> getAllUser() throws BusinessException;
+	public List<UserVO> getAllUser() throws BusinessException;
 }

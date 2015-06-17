@@ -2,7 +2,9 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
+    version="3.0">
   <display-name>Archetype Created Web Application</display-name>
   
   	<!-- 让 defaultServlet先拦截请求，这样请求就不会进入Spring了 -->
@@ -22,6 +24,21 @@
 	    <servlet-name>default</servlet-name>       
 	    <url-pattern>*.tpl</url-pattern>      
 	</servlet-mapping>
+	<servlet-mapping>        
+	    <servlet-name>default</servlet-name>       
+	    <url-pattern>*.ftl</url-pattern>      
+	</servlet-mapping>
+	
+	<!-- SpringSecurity必须的filter -->  
+    <filter>  
+        <filter-name>springSecurityFilterChain</filter-name>  
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
+    </filter>  
+  
+    <filter-mapping>  
+        <filter-name>springSecurityFilterChain</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>  
 
  	<filter>   
         <filter-name>encodingFilter</filter-name>   
@@ -29,7 +46,7 @@
         </filter-class>   
         <init-param>   
             <param-name>encoding</param-name>   
-            <param-value>gbk</param-value>   
+            <param-value>utf-8</param-value>   
         </init-param>   
     </filter>   
     
@@ -45,6 +62,11 @@
 	     <load-on-startup>1</load-on-startup>  
 	 </servlet>  
  
+ 	 <filter-mapping>  
+        <filter-name>springSecurityFilterChain</filter-name>  
+        <url-pattern>/*</url-pattern>  
+     </filter-mapping>  
+    
 	  <servlet-mapping>  
 	     <servlet-name>springmvc</servlet-name>  
 	     <url-pattern>/</url-pattern>  
@@ -58,5 +80,12 @@
 	    <param-name>contextConfigLocation</param-name>
 	    <param-value>classpath:spring-*.xml</param-value>
 	</context-param>
-
+	
+	<jsp-config>
+	   <taglib>
+		   <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+		   <taglib-location>/WEB-INF/c.tld</taglib-location>
+	   </taglib>
+	</jsp-config>
+	
 </web-app>

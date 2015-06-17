@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
 <mapper namespace="com.example.service.itf.IUserService"> 
  
-    <resultMap id="userMap" type="com.example.vo.User">  
+    <resultMap id="userMap" type="com.example.vo.UserVO">  
         <id column="id" property="id" jdbcType="INTEGER" />   
         <result column="name" property="name" jdbcType="VARCHAR" /> 
     </resultMap>  

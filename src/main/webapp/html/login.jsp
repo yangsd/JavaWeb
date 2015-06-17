@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet"> 
     <script src="../plugins/sea.js"></script>
     <script src="../tool/config.js"></script>
@@ -13,18 +14,26 @@
   </head>
   
   <body>
-  
    <div class="container">
-  	<form class="form"> 
+    <div>${message}</div>
+  	<form class="form" action="../j_spring_security_check" method="post"> 
   	
 	  <div class="form-login">
 	    <label for="username">Username</label>
-	    <input type="text" class="form-control" id="username" placeholder="Enter Username">
+	    <input type="text" class="form-control" id="username" name='j_username' placeholder="Enter Username">
 	  </div>
 	  
 	  <div class="form-login">
 	    <label for="password">Password</label>
-	    <input type="password" class="form-control" id="password" placeholder="Enter Password">
+	    <input type="password" class="form-control" id="password" name='j_password' placeholder="Enter Password">
+	  </div>	  
+	  
+	  <div class="form-login">		 
+	  	<label for="code">Code</label> 
+		<input type="text" class="form-control" id="validate"  placeholder="ValidateCode" /> 
+		<a href="#"> 
+			<img src="" id="codefont" width="68" height="27" alt="" /> 
+		</a> 		
 	  </div>
 	
 	  <div class="remember">
