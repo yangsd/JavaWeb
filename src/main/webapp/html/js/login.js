@@ -9,8 +9,12 @@ seajs.use(['jquery','bootstrap','request'],function($,Bootstrap,Request){
 			});
 	});
 	*/
+	$(function(){
+		setValidateCode();
+	});
+	
 	function setValidateCode() {
-		$('img#codefont').attr('src', 'html/randomnum?num=' + new Date().getTime());
+		$('img#codefont').attr('src', 'randomnum?num=' + new Date().getTime());
 	}
 	
 	$('img#codefont').bind('click', setValidateCode);

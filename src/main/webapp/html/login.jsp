@@ -16,21 +16,24 @@
   <body>
    <div class="container">
     <div>${message}</div>
-  	<form class="form" action="../j_spring_security_check" method="post"> 
+    <!--  
+  	<form class="form" action="../j_spring_security_check" method="post">
+  	--> 
+  	<form class="form" action="../login_check" method="post"> 	
   	
 	  <div class="form-login">
 	    <label for="username">Username</label>
-	    <input type="text" class="form-control" id="username" name='j_username' placeholder="Enter Username">
+	    <input type="text" class="form-control" id="username" name='username' placeholder="Enter Username">
 	  </div>
 	  
 	  <div class="form-login">
 	    <label for="password">Password</label>
-	    <input type="password" class="form-control" id="password" name='j_password' placeholder="Enter Password">
+	    <input type="password" class="form-control" id="password" name='password' placeholder="Enter Password">
 	  </div>	  
 	  
 	  <div class="form-login">		 
 	  	<label for="code">Code</label> 
-		<input type="text" class="form-control" id="validate"  placeholder="ValidateCode" /> 
+		<input type="text" class="form-control" id="verificationCode" name='verificationCode' placeholder="verificationCode" /> 
 		<a href="#"> 
 			<img src="" id="codefont" width="68" height="27" alt="" /> 
 		</a> 		

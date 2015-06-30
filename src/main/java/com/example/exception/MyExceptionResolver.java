@@ -141,7 +141,7 @@ public class MyExceptionResolver extends AbstractHandlerExceptionResolver {
 	private ModelAndView handleSystemException(Exception ex,
 			HttpServletRequest request, HttpServletResponse response,
 			Object handler) {
-		ModelAndView model = new ModelAndView("html/error/error.jsp");
+		ModelAndView model = new ModelAndView("error");
 		// print stackTrace to string
 		ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
 		PrintStream pstream = new PrintStream(byteOut);

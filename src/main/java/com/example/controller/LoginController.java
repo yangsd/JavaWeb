@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.constants.User;
+import com.example.dao.UserDao;
 import com.example.exception.BusinessException;
-import com.example.service.itf.IUserService;
 import com.example.util.JsonUtil;
 import com.example.util.RandomCodeUtil;
 import com.example.vo.UserVO;
@@ -37,7 +38,7 @@ import com.example.vo.UserVO;
 public class LoginController {
 
 	@Resource
-	IUserService userService;
+	UserDao userDao;
 
 	@RequestMapping(value = "/greeting", method = RequestMethod.POST)
 	public @ResponseBody
@@ -50,7 +51,7 @@ public class LoginController {
 		try {
 			// userService.saveUser(user);
 			// List<User> users = userService.getAllUser();
-			userService.getUserById(1);
+			userDao.getUserById(1);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -61,14 +62,7 @@ public class LoginController {
 		return obj;
 	}
 
-	/*
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelAndView index(HttpServletRequest request) {
 
-		return new ModelAndView("/html/login.jsp");
-	}
-*/
 	/**
 	 * 指向登录页面
 	 */
@@ -169,7 +163,7 @@ public class LoginController {
             gra.drawString("" + c, (i + 1) * xx, codeY);
         }
         // 把当前的验证码存入session中，以供登录时验证
-        request.getSession().setAttribute("VALIDATION_KEY", randomCode);
+        request.getSession().setAttribute(User.SESSION_VERIFICATIONCODE, randomCode);
         // 禁止图像缓存。
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-cache");

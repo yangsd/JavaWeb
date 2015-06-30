@@ -29,6 +29,15 @@
 	    <url-pattern>*.ftl</url-pattern>      
 	</servlet-mapping>
 	
+	<filter>
+		<filter-name>session-filter</filter-name>
+		<filter-class>com.example.filter.SessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>session-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- SpringSecurity必须的filter -->  
     <filter>  
         <filter-name>springSecurityFilterChain</filter-name>  
@@ -76,6 +85,10 @@
 	     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
 	 </listener>
 	 
+	 <listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	 </listener>
+	 
 	 <context-param>
 	    <param-name>contextConfigLocation</param-name>
 	    <param-value>classpath:spring-*.xml</param-value>
@@ -87,5 +100,9 @@
 		   <taglib-location>/WEB-INF/c.tld</taglib-location>
 	   </taglib>
 	</jsp-config>
+	
+	<welcome-file-list id="welcome">
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
 	
 </web-app>

@@ -1,6 +1,5 @@
 package com.example.vo;
 
-
 /**
  * ”√ªß
  * 
@@ -17,9 +16,11 @@ public class UserVO {
 	private String password;
 
 	private Integer access;
-	
-	public UserVO(){
-		
+
+	private RoleVO role;
+
+	public UserVO() {
+
 	}
 
 	public int getId() {
@@ -52,6 +53,14 @@ public class UserVO {
 
 	public void setAccess(Integer access) {
 		this.access = access;
+	}
+
+	public RoleVO getRole() {
+		return role;
+	}
+
+	public void setRole(RoleVO role) {
+		this.role = role;
 	}
 
 }

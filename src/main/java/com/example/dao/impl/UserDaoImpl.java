@@ -1,12 +1,13 @@
-package com.example.service.impl;
+package com.example.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.dao.UserDao;
 import com.example.exception.BusinessException;
-import com.example.service.itf.IUserService;
 import com.example.util.BaseDAO;
 import com.example.vo.UserVO;
 
@@ -16,8 +17,8 @@ import com.example.vo.UserVO;
  * @date 2015年6月3日 下午5:34:29
  */
 @Transactional
-@Service("userService")
-public class UserServiceImpl extends BaseDAO implements IUserService {
+@Service("userDao")
+public class UserDaoImpl extends BaseDAO implements UserDao {
 
 	private static String NAMESPACE = "com.example.service.itf.IUserService.";
 	
@@ -45,4 +46,41 @@ public class UserServiceImpl extends BaseDAO implements IUserService {
 		return null;
 	}
 
+	public UserVO getUserByName(String username) throws BusinessException {
+		List<UserVO> users = initUsers();
+
+		for (UserVO User : users) {
+			if (User.getName().equals(username) == true) {
+				return User;
+			}
+		}
+		throw new BusinessException("User does not exist!");
+	}
+
+	private List<UserVO> initUsers() {
+
+		List<UserVO> users = new ArrayList<UserVO>();
+		UserVO user = null;
+
+		user = new UserVO();
+		user.setName("admin");
+
+		// "admin"经过MD5加密后
+		user.setPassword("21232f297a57a5a743894a0e4a801fc3");
+		user.setAccess(1);
+
+		users.add(user);
+
+		user = new UserVO();
+		user.setName("user");
+
+		// "user"经过MD5加密后
+		user.setPassword("ee11cbb19052e40b07aac0ca060c23ee");
+		user.setAccess(2);
+
+		users.add(user);
+
+		return users;
+
+	}
 }

@@ -1,52 +1,27 @@
 package com.example.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.example.exception.BusinessException;
 import com.example.vo.UserVO;
 
-public class UserDAO {
+/**
+ * 用户基础服务类
+ * @author sdyang
+ * @date 2015年6月3日 下午3:07:31
+ */
 
-	public UserVO getDatabase(String username) {
+public interface UserDao {
 
-		List<UserVO> users = internalDatabase();
+	public void saveUser(UserVO user) throws BusinessException;
 
-		for (UserVO User : users) {
-			if (User.getName().equals(username) == true) {
-				return User;
-			}
-		}
-		throw new RuntimeException("User does not exist!");
+	public void delUser(UserVO user) throws BusinessException;
 
-	}
+	public void editUsre(UserVO user) throws BusinessException;
 
-	/**
-	 * 初始化数据
-	 */
-	private List<UserVO> internalDatabase() {
-
-		List<UserVO> users = new ArrayList<UserVO>();
-		UserVO user = null;
-
-		user = new UserVO();
-		user.setName("admin");
-
-		// "admin"经过MD5加密后
-		user.setPassword("21232f297a57a5a743894a0e4a801fc3");
-		user.setAccess(1);
-
-		users.add(user);
-
-		user = new UserVO();
-		user.setName("user");
-
-		// "user"经过MD5加密后
-		user.setPassword("ee11cbb19052e40b07aac0ca060c23ee");
-		user.setAccess(2);
-
-		users.add(user);
-
-		return users;
-
-	}
+	public UserVO getUserById(int id) throws BusinessException;
+	
+	public UserVO getUserByName(String username) throws BusinessException;
+	
+	public List<UserVO> getAllUser() throws BusinessException;
 }

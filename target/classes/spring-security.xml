@@ -6,40 +6,86 @@
 	   		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 			http://www.springframework.org/schema/security 
 			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-	
-	<!--  Spring-Security 的配置 -->
-	<!-- 注意开启use-expressions.表示开启表达式.
-	see:http://www.family168.com/tutorial/springsecurity3/html/el-access.html
-	 -->
-	<security:http auto-config="true" use-expressions="true" access-denied-page="/html/denied" >
-		
-		<security:intercept-url pattern="/html/login" access="permitAll"/>
-		<security:intercept-url pattern="/html/admin" access="hasRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/html/common" access="hasRole('ROLE_USER')"/>
-		
-		<security:form-login
-				login-page="/html/login" 
-				authentication-failure-url="/html/login?error=true" 
-				default-target-url="/html/common"/>
+ 
+	<security:http access-decision-manager-ref="customAccessDecisionManager"
+		entry-point-ref="authenticationEntryPoint">			
 			
-		<security:logout 
-				invalidate-session="true" 
-				logout-success-url="/html/login" 
-				logout-url="/html/logout"/>
-	
+		<security:access-denied-handler ref="accessDeniedHandler"/>
+		 
+		<security:session-management invalid-session-url="/html/login.jsp" />
+		  
+		<security:logout invalidate-session="true" logout-url="/logout"  logout-success-url="/login.jsp" />  
+  
+    	<security:session-management session-authentication-strategy-ref="concurrentSessionControlStrategy" />  
+      
+		<security:custom-filter ref="customFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+		
+		<security:custom-filter ref="captchaAuthenticaionFilter" position="FORM_LOGIN_FILTER"/>
+		
+		<security:custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER"/> 
+				
 	</security:http>
 	
-	<!-- 指定一个自定义的authentication-manager :myUserDetailsService -->
-	<security:authentication-manager>
+	<security:authentication-manager alias="authenticationManager">
 	        <security:authentication-provider user-service-ref="myUserDetailsService">
 	        		<security:password-encoder ref="passwordEncoder"/>
 	        </security:authentication-provider>
 	</security:authentication-manager>
 	
+	<bean id="customSecurityMetadataSource" class="com.example.filter.MyResourceFilter" />
+         
+    <bean id="customAccessDecisionManager" class="com.example.login.MyAccessDecisionManager" />
+    
+    <bean id="customFilter"
+          class="com.example.filter.MySecurityFilter">
+          <property name="authenticationManager" ref="authenticationManager" />
+          <property name="accessDecisionManager" ref="customAccessDecisionManager" />
+          <property name="securityMetadataSource" ref="customSecurityMetadataSource" />
+    </bean> 
+  
+    <bean id="captchaAuthenticaionFilter" class="com.example.filter.AuthenticationFilter">  
+	    <property name="authenticationManager" ref="authenticationManager" />  
+	    <property name="authenticationFailureHandler" ref="authenticationFailureHandler" />  
+	    <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />  
+	    <property name="filterProcessesUrl" value="/login_check" />  
+	    <property name="sessionAuthenticationStrategy" ref="concurrentSessionControlStrategy" />
+	</bean> 
+	 
+	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<property name="loginFormUrl" value="/html/login.jsp" />
+	</bean>
+	
+	<bean id="accessDeniedHandler" class="com.example.handler.MyAccessDeniedHandler">  
+	    <property name="errorPage" value="/html/denied"></property>  
+	</bean>
+	
+	<bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/html/login.jsp" />
+	</bean>
+
+	<bean id="authenticationSuccessHandler" class="com.example.handler.SimpleLoginSuccessHandler">  
+	    <property name="defaultTargetUrl" value="/html/common"></property>  
+	    <property name="forwardToDestination" value="false"></property>  
+	</bean> 
+
+	 
 	<!-- 对密码进行MD5编码 -->
 	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
-	<bean id="myUserDetailsService" class="com.example.service.impl.MyUserDetailsService"/>
+	<bean id="myUserDetailsService" class="com.example.service.MyUserDetailsService"/>
+	
+	<bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">  
+	    <constructor-arg name="sessionRegistry" ref="sessionRegistry" />  
+	    <constructor-arg name="expiredUrl" value="/sessionOut.jsp" />  
+	</bean> 
+
+	<bean id="concurrentSessionControlStrategy"  
+	    class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">  
+	    <constructor-arg name="sessionRegistry" ref="sessionRegistry" />  
+	    <property name="maximumSessions" value="1"></property>  
+	</bean>  
+	  
+	<bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
 	
 </beans>
 
