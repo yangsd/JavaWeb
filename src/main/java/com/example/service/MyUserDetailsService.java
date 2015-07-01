@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.example.constants.RoleConstant;
 import com.example.dao.UserDao;
 import com.example.exception.BusinessException;
 import com.example.vo.UserVO;
@@ -52,11 +53,11 @@ public class MyUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
 
 		// 所有的用户默认拥有ROLE_USER权限
-		authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+		authList.add(new SimpleGrantedAuthority(RoleConstant.ROLE_USER));
 
 		// 如果参数access为1.则拥有ROLE_ADMIN权限
 		if (access.compareTo(1) == 0) {
-			authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			authList.add(new SimpleGrantedAuthority(RoleConstant.ROLE_ADMIN));
 		}
 
 		return authList;

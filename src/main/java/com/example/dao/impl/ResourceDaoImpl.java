@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.constants.Role;
+import com.example.constants.RoleConstant;
 import com.example.dao.ResourceDao;
 
 /**
@@ -20,8 +20,8 @@ public class ResourceDaoImpl implements ResourceDao {
 
 	public Map<String, String> getResources() {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("/html/admin", Role.ROLE_ADMIN);
-		map.put("/html/common", Role.ROLE_USER);
+		map.put("/html/admin", RoleConstant.ROLE_ADMIN);
+		map.put("/html/common", RoleConstant.ROLE_USER);
 		return map;
 	}
 }

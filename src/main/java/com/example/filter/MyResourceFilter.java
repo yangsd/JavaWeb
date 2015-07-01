@@ -69,8 +69,6 @@ public class MyResourceFilter implements FilterInvocationSecurityMetadataSource 
 			throws IllegalArgumentException {
 		String url = ((FilterInvocation) object).getRequestUrl();
 
-		System.out.println("requestUrl is " + url);
-
 		if (resourceMap == null) {
 			loadResourceMatchAuthority();
 		}
@@ -81,9 +79,11 @@ public class MyResourceFilter implements FilterInvocationSecurityMetadataSource 
             url = url.substring(0, firstQuestionMarkIndex);
         }
         // 过滤不需要验证的资源
-        if (url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".css")) {
+        if (url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".css")|| url.endsWith(".tpl")) {
             return null;
         }
+        
+        System.out.println("请求的url:" + url);
         
 		// 比较url是否存在
 		Iterator<String> ite = resourceMap.keySet().iterator();

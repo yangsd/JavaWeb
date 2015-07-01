@@ -5,7 +5,7 @@ package com.example.constants;
  * @author sdyang
  * @date 2015年6月30日 上午11:07:29
  */
-public interface User {
+public interface UserConstant {
 
 	/**
 	 * 用户名

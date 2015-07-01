@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.constants.User;
+import com.example.constants.UserConstant;
 import com.example.dao.UserDao;
 import com.example.exception.BusinessException;
 import com.example.util.JsonUtil;
@@ -72,7 +72,6 @@ public class LoginController {
 			ModelMap model) {
 
 		if (error == true) {
-			// Assign an error message
 			model.put("error",
 					"You have entered an invalid username or password!");
 		} else {
@@ -90,13 +89,13 @@ public class LoginController {
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String getDeniedPage() {
 
-		return "deniedpage";
+		return "denied";
 
 	}
 	
 	@RequestMapping(value = "/common", method = RequestMethod.GET)
 	public String getCommonPage() {
-		return "commonpage";
+		return "home";
 	}
 
 	/**
@@ -106,7 +105,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String getAadminPage() {
-		return "adminpage";
+		return "admin";
 
 	}
 	
@@ -163,7 +162,7 @@ public class LoginController {
             gra.drawString("" + c, (i + 1) * xx, codeY);
         }
         // 把当前的验证码存入session中，以供登录时验证
-        request.getSession().setAttribute(User.SESSION_VERIFICATIONCODE, randomCode);
+        request.getSession().setAttribute(UserConstant.SESSION_VERIFICATIONCODE, randomCode);
         // 禁止图像缓存。
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-cache");

@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.constants.User;
+import com.example.constants.UserConstant;
 import com.example.login.SingleOnline;
 
 /**
@@ -47,7 +47,7 @@ public class SessionFilter implements Filter {
 				.getProperty("isSingleLogin"));
 		if (this.isStaticFile(context) || this.isNoProtected(context)) {
 			fc.doFilter(request, response);
-		} else if (request.getSession().getAttribute(User.USERINFO) == null) {
+		} else if (request.getSession().getAttribute(UserConstant.USERINFO) == null) {
 			// 如果是ajax请求，则返回nologin
 			if (request.getHeader("x-requested-with") != null
 					&& request.getHeader("x-requested-with").equalsIgnoreCase(

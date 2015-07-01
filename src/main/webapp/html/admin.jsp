@@ -4,14 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>管理员页面</title>
 </head>
 <body>
-	<h1>Common Page</h1>
-	<p>每个人都能访问的页面.</p>
-	<a href="/JavaWeb/html/admin"> Go AdminPage </a>
-	<br />
+	<h1>Admin Page</h1>
+	<p>管理员页面</p>
 	<a href="/JavaWeb/html/login">退出登录</a>
-
 </body>
 </html>

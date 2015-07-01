@@ -11,6 +11,8 @@ define(function(require, exports, module) {
 		tplSource = "";
 		if(tplFile == "test.tpl"){
 			tplSource=require("../tpl/test.tpl");
+		}else if(tplFile == "nav.tpl"){
+			tplSource=require("../tpl/nav.tpl");
 		}
     	var render = template.compile(tplSource);
     	var html = render(data);

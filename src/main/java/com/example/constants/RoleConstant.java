@@ -5,7 +5,7 @@ package com.example.constants;
  * @author sdyang
  * @date 2015年6月30日 上午11:06:20
  */
-public interface Role {
+public interface RoleConstant {
 
 	/**
 	 * 管理员
