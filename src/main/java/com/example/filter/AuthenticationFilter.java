@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.TextEscapeUtils;
 import org.springframework.util.StringUtils;
 
-import com.example.constants.User;
+import com.example.constants.UserConstant;
 import com.example.vo.AuthenticationTokenVO;
 
 /**
@@ -25,9 +25,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
 
-		String username = request.getParameter(User.USERNAME);
-		String password = request.getParameter(User.PASSWORD);
-		String verificationCode = request.getParameter(User.VERIFICATIONCODE);
+		String username = request.getParameter(UserConstant.USERNAME);
+		String password = request.getParameter(UserConstant.PASSWORD);
+		String verificationCode = request.getParameter(UserConstant.VERIFICATIONCODE);
 
 		if (username == null) {
 			username = "";
@@ -45,7 +45,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		HttpSession session = request.getSession(false);
 
 		if (session != null || getAllowSessionCreation()) {
-			request.getSession().setAttribute(User.USERINFO,
+			request.getSession().setAttribute(UserConstant.USERINFO,
 					TextEscapeUtils.escapeEntities(username));
 
 		}
@@ -53,7 +53,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		setDetails(request, authRequest);
 
 		// ºÏ≤È—È÷§¬Î
-		checkValidateCode(request);
+		//checkValidateCode(request);
 
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
@@ -66,10 +66,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	 */
 	private void checkValidateCode(HttpServletRequest request) {
 
-		String validateCodeParameter = request.getParameter(User.VERIFICATIONCODE);
+		String validateCodeParameter = request.getParameter(UserConstant.VERIFICATIONCODE);
 
 		String sessionValidateCode = (String) request.getSession()
-				.getAttribute(User.SESSION_VERIFICATIONCODE);
+				.getAttribute(UserConstant.SESSION_VERIFICATIONCODE);
 
 		if (StringUtils.isEmpty(validateCodeParameter)
 				|| !sessionValidateCode.equalsIgnoreCase(validateCodeParameter)) {

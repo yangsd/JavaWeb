@@ -12,7 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.constants.User;
+import com.example.constants.UrlConstant;
+import com.example.constants.UserConstant;
 import com.example.login.SingleOnline;
 
 /**
@@ -47,7 +48,7 @@ public class SessionFilter implements Filter {
 				.getProperty("isSingleLogin"));
 		if (this.isStaticFile(context) || this.isNoProtected(context)) {
 			fc.doFilter(request, response);
-		} else if (request.getSession().getAttribute(User.USERINFO) == null) {
+		} else if (request.getSession().getAttribute(UserConstant.USERINFO) == null) {
 			// 如果是ajax请求，则返回nologin
 			if (request.getHeader("x-requested-with") != null
 					&& request.getHeader("x-requested-with").equalsIgnoreCase(
@@ -57,7 +58,8 @@ public class SessionFilter implements Filter {
 				printWriter.flush();
 				printWriter.close();
 			} else {
-				response.sendRedirect(request.getContextPath() + "/html/login.jsp");
+				response.sendRedirect(request.getContextPath()
+						+ UrlConstant.LOGIN);
 			}
 			return;
 		} else if (isSingleLogin) {
@@ -73,7 +75,7 @@ public class SessionFilter implements Filter {
 					printWriter.close();
 				} else {
 					response.sendRedirect(request.getContextPath()
-							+ "/html/login.jsp");
+							+ UrlConstant.LOGIN);
 				}
 			} else {
 				fc.doFilter(request, response);
@@ -87,8 +89,7 @@ public class SessionFilter implements Filter {
 	}
 
 	private boolean isStaticFile(String context) {
-		String[] suffixs = new String[] { ".tpl", ".css", ".js", ".jpg",
-				".gif", ".png",".ftl" };
+		String[] suffixs = new String[] { ".css", ".js", ".jpg", ".gif", ".png" };
 		for (String suffix : suffixs) {
 			if (context.endsWith(suffix)) {
 				return true;
@@ -106,8 +107,8 @@ public class SessionFilter implements Filter {
 	 * @date:2013-6-14 上午11:45:59
 	 */
 	private boolean isNoProtected(String context) {
-		String[] urls = new String[] { "/html/login.jsp",
-				"/login_check","/html/randomnum" };
+		String[] urls = new String[] { UrlConstant.LOGIN,
+				UrlConstant.LOGIN_CHECK, UrlConstant.RANDOMNUM };
 		for (String url : urls) {
 			if (url.equals(context) || context.startsWith("/login")) {
 				return true;

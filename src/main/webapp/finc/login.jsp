@@ -5,10 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href="../themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
     <link href="css/login.css" rel="stylesheet"> 
-    <script src="../plugins/sea.js"></script>
-    <script src="../tool/config.js"></script>
+    <script src="../plugins/jquery-2.1.4.js"></script>
     <script src="js/login.js"></script>
     <title>Login</title>	
   </head>

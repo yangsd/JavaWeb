@@ -5,7 +5,7 @@ package com.example.constants;
  * @author sdyang
  * @date 2015年6月30日 上午11:07:29
  */
-public interface User {
+public interface UserConstant {
 
 	/**
 	 * 用户名
@@ -31,5 +31,10 @@ public interface User {
 	 * 用户信息
 	 */
 	public static String USERINFO = "userInfo";
+
+	/**
+	 * 访问的权限
+	 */
+	public static String ACCESS = "access";
 
 }

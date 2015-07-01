@@ -11,7 +11,12 @@
      
     <!-- 自动搜索@Controller标注的类 -->
     <context:component-scan base-package="com.example.*" />
-	
+    
+      
+    <!-- 将无法mapping到Controller的path交给default servlet handler处理 --> 
+    <!-- 
+    <mvc:default-servlet-handler />
+	 --> 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
     
@@ -21,7 +26,7 @@
     <!-- 配置freeMarker的模板路径 -->  
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
         <property name="configLocation" value="classpath:freemarker.properties" />  
-        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />  
+        <property name="templateLoaderPath" value="/finc/" />  
         <property name="freemarkerVariables">  
             <map>  
                 <entry key="xml_escape" value-ref="fmXmlEscape" />  
@@ -30,12 +35,11 @@
     </bean>  
   
     <!-- 配置freeMarker视图解析器 -->  
-    <!--  
+      
     <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />  
         <property name="contentType" value="text/html; charset=utf-8" />  
         <property name="cache" value="true" />  
-        <property name="prefix" value="/"/>
         <property name="suffix" value=".ftl" />  
         <property name="order" value="1" />  
   
@@ -44,15 +48,14 @@
         <property name="exposeSessionAttributes" value="true" />  
         <property name="exposeSpringMacroHelpers" value="true" />  
     </bean>  
-    -->
-	<!-- Default ViewResolver -->
+    
     <bean id="jspviewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
             value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/html/" />
+        <property name="prefix" value="/finc/" />
         <property name="suffix" value=".jsp"></property>
-        <property name="order" value="1" />
+        <property name="order" value="2" />
     </bean>
     
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

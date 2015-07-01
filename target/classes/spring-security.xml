@@ -12,7 +12,7 @@
 			
 		<security:access-denied-handler ref="accessDeniedHandler"/>
 		 
-		<security:session-management invalid-session-url="/html/login.jsp" />
+		<security:session-management invalid-session-url="/finc/login.jsp" />
 		  
 		<security:logout invalidate-session="true" logout-url="/logout"  logout-success-url="/login.jsp" />  
   
@@ -52,19 +52,19 @@
 	</bean> 
 	 
 	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<property name="loginFormUrl" value="/html/login.jsp" />
+		<property name="loginFormUrl" value="/finc/login.jsp" />
 	</bean>
 	
 	<bean id="accessDeniedHandler" class="com.example.handler.MyAccessDeniedHandler">  
-	    <property name="errorPage" value="/html/denied"></property>  
+	    <property name="errorPage" value="/finc/denied"></property>  
 	</bean>
 	
 	<bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-		<property name="defaultFailureUrl" value="/html/login.jsp" />
+		<property name="defaultFailureUrl" value="/finc/login.jsp" />
 	</bean>
 
 	<bean id="authenticationSuccessHandler" class="com.example.handler.SimpleLoginSuccessHandler">  
-	    <property name="defaultTargetUrl" value="/html/common"></property>  
+	    <property name="defaultTargetUrl" value="/finc/home"></property>  
 	    <property name="forwardToDestination" value="false"></property>  
 	</bean> 
 

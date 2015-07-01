@@ -26,15 +26,16 @@ public class SimpleLoginSuccessHandler implements AuthenticationSuccessHandler,
 	}
 
 	public void onAuthenticationSuccess(HttpServletRequest request,
-			HttpServletResponse response, Authentication authentication) throws IOException,
-			ServletException {
-		if(this.forwardToDestination){  
-             
-            request.getRequestDispatcher(this.defaultTargetUrl).forward(request, response);  
-        }else{  
-              
-            this.redirectStrategy.sendRedirect(request, response, this.defaultTargetUrl);  
-        }  
+			HttpServletResponse response, Authentication authentication)
+			throws IOException, ServletException {
+
+		if (this.forwardToDestination) {
+			request.getRequestDispatcher(this.defaultTargetUrl).forward(
+					request, response);
+		} else {
+			this.redirectStrategy.sendRedirect(request, response,
+					this.defaultTargetUrl);
+		}
 
 	}
 
