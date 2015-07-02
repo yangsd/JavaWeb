@@ -79,7 +79,7 @@ public class MyResourceFilter implements FilterInvocationSecurityMetadataSource 
             url = url.substring(0, firstQuestionMarkIndex);
         }
         // 过滤不需要验证的资源
-        if (url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".css")) {
+        if (url.endsWith(".js") || url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".css")|| url.endsWith(".gif")) {
             return null;
         }
         

@@ -27,7 +27,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 		String username = request.getParameter(UserConstant.USERNAME);
 		String password = request.getParameter(UserConstant.PASSWORD);
-		String verificationCode = request.getParameter(UserConstant.VERIFICATIONCODE);
+		String verificationCode = request
+				.getParameter(UserConstant.VERIFICATIONCODE);
 
 		if (username == null) {
 			username = "";
@@ -53,7 +54,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		setDetails(request, authRequest);
 
 		// ºÏ≤È—È÷§¬Î
-		//checkValidateCode(request);
+		// checkValidateCode(request);
 
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
@@ -66,7 +67,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	 */
 	private void checkValidateCode(HttpServletRequest request) {
 
-		String validateCodeParameter = request.getParameter(UserConstant.VERIFICATIONCODE);
+		String validateCodeParameter = request
+				.getParameter(UserConstant.VERIFICATIONCODE);
 
 		String sessionValidateCode = (String) request.getSession()
 				.getAttribute(UserConstant.SESSION_VERIFICATIONCODE);

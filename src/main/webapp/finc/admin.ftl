@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <#include "./common/common.ftl"/>
+    <link href="css/admin.css" rel="stylesheet">
 	<title>admin</title>
 </head>
 <body>

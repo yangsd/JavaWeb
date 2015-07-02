@@ -1,7 +1,18 @@
 <div>	
     <ul class="nav nav-pills">
 		<li role="presentation" class="active"><a href="/JavaWeb/finc/home">Home</a></li>
-		<li role="presentation"><a href="#">Profile</a></li>
+		<li role="presentation" class="dropdown">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+		      Chart <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+			    <li><a href="/JavaWeb/finc/line">Line</a></li>
+			    <li><a href="/JavaWeb/finc/line1">Line1</a></li>
+	            <li><a href="/JavaWeb/finc/column">Column</a></li>
+	            <li><a href="/JavaWeb/finc/column1">Column1</a></li>
+	            <li><a href="/JavaWeb/finc/pie">Pie</a></li>
+		    </ul>
+	    </li>
 		<li role="presentation"><a href="#">Messages</a></li>
 	    <li role="presentation" class="dropdown">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

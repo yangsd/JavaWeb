@@ -33,7 +33,7 @@
 	  <div class="form-login">		 
 	  	<label for="code">Code</label> 
 		<input type="text" class="form-control" id="verificationCode" name='verificationCode' placeholder="verificationCode" /> 
-		<a href="#"> 
+		<a id="randomnum" href="#" onclick="changeImg()"> 
 			<img src="" id="codefont" width="68" height="27" alt="" /> 
 		</a> 		
 	  </div>

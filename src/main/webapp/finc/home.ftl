@@ -7,14 +7,7 @@
 </head>
 <body>
    
-	<#include "./common/navbar-user.ftl"/>
-
-<div style="width:30%">
-	<div>
-		<canvas id="canvas" height="450" width="600"></canvas>
-	</div>
-</div>
-		
+	<#include "./common/navbar-user.ftl"/>	
 		
 <#include "./common/footer.ftl"/>
 </body>

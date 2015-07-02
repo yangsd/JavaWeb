@@ -20,16 +20,21 @@
 	    <servlet-name>default</servlet-name>       
 	    <url-pattern>*.css</url-pattern>      
 	</servlet-mapping>
-	<!-- 
-	<servlet-mapping>        
-	    <servlet-name>default</servlet-name>       
-	    <url-pattern>*.tpl</url-pattern>      
+	<servlet-mapping>   
+	    <servlet-name>default</servlet-name>  
+	    <url-pattern>*.png</url-pattern>     
 	</servlet-mapping>
-	<servlet-mapping>        
-	    <servlet-name>default</servlet-name>       
-	    <url-pattern>*.ftl</url-pattern>      
+	<servlet-mapping>   
+	    <servlet-name>default</servlet-name>  
+	    <url-pattern>*.gif</url-pattern>     
 	</servlet-mapping>
-	 -->
+	
+	
+	<mime-mapping>
+		<extension>json</extension>
+		<mime-type>text/json</mime-type>
+	</mime-mapping>
+	
 	<filter>
 		<filter-name>session-filter</filter-name>
 		<filter-class>com.example.filter.SessionFilter</filter-class>
@@ -57,8 +62,17 @@
         <init-param>   
             <param-name>encoding</param-name>   
             <param-value>utf-8</param-value>   
-        </init-param>   
-    </filter>   
+        </init-param> 
+        <init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>  
+    </filter> 
+    <filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.json</url-pattern>
+	</filter-mapping>
+	  
     
 	  <servlet>  
 	     <servlet-name>springmvc</servlet-name>  
@@ -101,6 +115,11 @@
 		   <taglib-location>/WEB-INF/c.tld</taglib-location>
 	   </taglib>
 	</jsp-config>
+	
+	<!-- session 10min-->
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
 	
 	<welcome-file-list id="welcome">
 		<welcome-file>login.jsp</welcome-file>
