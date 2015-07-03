@@ -6,7 +6,7 @@
 <#--css样式 -->
 <link href="../themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">	  
 <link href="../themes/jqxchart/jqx.base.css" rel="stylesheet" />
-<link href="../themes/easyui/bootstrap/easyui.css" rel="stylesheet">
+<link href="../themes/easyui/default/easyui.css" rel="stylesheet">
 <link href="../themes/easyui/icon.css" rel="stylesheet">
 
 <#-- jquery -->

@@ -12,6 +12,7 @@ import org.springframework.security.web.util.TextEscapeUtils;
 import org.springframework.util.StringUtils;
 
 import com.example.constants.UserConstant;
+import com.example.login.LoginConfig;
 import com.example.vo.AuthenticationTokenVO;
 
 /**
@@ -53,8 +54,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 		setDetails(request, authRequest);
 
+		// 是否检查验证码
+		String isVerificationCode =  (String) LoginConfig.getInstance()
+				.getConfigs().get("verificationCode");
+
 		// 检查验证码
-		// checkValidateCode(request);
+		if (isVerificationCode.equals("true")) {
+			checkValidateCode(request);
+		}
 
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}

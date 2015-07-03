@@ -1,9 +1,13 @@
 package com.example.login;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 /**
  * 
@@ -12,33 +16,46 @@ import java.util.Properties;
  */
 public class LoginConfig {
 
-	private boolean verificationCode;
+	private static LoginConfig instance;
 
-	public void loadConfig() {
-		Properties prop = new Properties();
+	private static Map<String, Object> configs = null;
+
+	public static LoginConfig getInstance() {
+		if (null == LoginConfig.instance) {
+			LoginConfig.instance = new LoginConfig();
+		}
+		loadConfig();
+		return LoginConfig.instance;
+	}
+
+	/**
+	 * 加载配置文件
+	 * @author sdyang
+	 * @date 2015年7月3日 上午9:15:07
+	 */
+	private static void loadConfig() {
+		Map<String, Object> config = new HashMap<String, Object>();
 		try {
-			// 读取属性文件a.properties
-			InputStream in = new FileInputStream("login.properties ");
-			prop.load(in); // /加载属性列表
-			Iterator<String> it = prop.stringPropertyNames().iterator();
+			Resource resource = new ClassPathResource("login.properties");
+			Properties props = PropertiesLoaderUtils.loadProperties(resource);
+			Iterator<String> it = props.stringPropertyNames().iterator();
 			while (it.hasNext()) {
 				String key = it.next();
-				System.out.println(key + ":" + prop.getProperty(key));
+				config.put(key, props.getProperty(key));
 			}
-			in.close();
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		setConfigs(config);
 	}
 
-	public boolean getVerificationCode() {
-		loadConfig();
-		return verificationCode;
+	public static Map<String, Object> getConfigs() {
+		return configs;
 	}
 
-	public void setVerificationCode(boolean verificationCode) {
-		this.verificationCode = verificationCode;
+	public static void setConfigs(Map<String, Object> configs) {
+		LoginConfig.configs = configs;
 	}
 
 }
