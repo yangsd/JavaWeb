@@ -6,7 +6,8 @@
 	<title>pie</title>
 </head>
 <body>
-   
+    
+    <#assign active='chart'/>
 	<#include "./common/navbar-user.ftl"/>
 
 	<div id='chartContainer' style="width: 850px; height: 500px;">

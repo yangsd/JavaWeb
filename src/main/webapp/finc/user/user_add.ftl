@@ -5,14 +5,15 @@
 	<title>user_add</title>
 </head>
 <body>
-
+	<#assign active='user_add'/>
 	<#include "./common/navbar-user.ftl"/>
 		
-
 	<div class="easyui-panel" title="User Add" style="width:800px">
+        <!--
         <div style="padding:10px 60px 20px 60px">
+        -->
         <form id="ff" method="post">
-            <table cellpadding="5">
+            <table cellpadding="10">
                 <tr>
                     <td>Name:</td>
                     <td><input class="easyui-textbox" disable="disable" type="text" name="name" data-options="required:true"></input></td>
@@ -40,13 +41,13 @@
                         <option value="es">Spanish</option>
                         </select>
                     </td>
+                    <td></td>
+                    <td><button type="button" class="btn btn-default">save</button></td>
                  </tr>
             </table>
         </form>
         </div>
     </div>
-	
-	
 	<#include "./common/footer.ftl"/>
 </body>
 </html>

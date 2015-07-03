@@ -6,7 +6,7 @@
 	<title>home</title>
 </head>
 <body>
-   
+    <#assign active='home'/>
 	<#include "./common/navbar-user.ftl"/>	
 		
 <#include "./common/footer.ftl"/>

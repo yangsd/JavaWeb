@@ -6,7 +6,7 @@
 	<title>column</title>
 </head>
 <body>
-   
+    <#assign active='chart'/>
 	<#include "./common/navbar-user.ftl"/>
 
 	<div id="chart1" style="width:800px; height:500px"></div>

@@ -6,7 +6,8 @@
 	<title>line1</title>
 </head>
 <body>
-   
+    
+    <#assign active='chart'/>
 	<#include "./common/navbar-user.ftl"/>
 
 	<div id='jqxChart' style="width: 850px; height: 400px; position: relative; left: 0px; top: 0px;"></div>
