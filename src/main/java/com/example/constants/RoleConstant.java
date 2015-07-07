@@ -1,5 +1,8 @@
 package com.example.constants;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * @author sdyang
@@ -16,5 +19,15 @@ public interface RoleConstant {
 	 * 用户
 	 */
 	public static String ROLE_USER = "ROLE_USER";
+
+	/**
+	 * 访问权限
+	 */
+	public static Map<Integer, String> ACCESS = new HashMap<Integer, String>() {
+		{
+			put(1, "admin");
+			put(2, "user");
+		}
+	};
 
 }

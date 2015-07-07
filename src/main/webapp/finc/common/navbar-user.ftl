@@ -84,7 +84,7 @@
 	    <#if active == "1">
 	    	<li role="presentation" class="active"><a href="/JavaWeb/finc/login">logout</a></li>
 	    <#else>
-	    	<li role="presentation"><a href="/JavaWeb/finc/login">logout</a></li>
+	    	<li role="presentation"><a href="/JavaWeb/finc/login">Logout</a></li>
 	    </#if>
 	    
 	</ul>

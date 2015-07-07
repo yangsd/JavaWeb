@@ -1,5 +1,6 @@
 package com.example.vo;
 
+
 /**
  * ”√ªß
  * 
@@ -9,7 +10,9 @@ package com.example.vo;
 
 public class UserVO {
 
-	private int id;
+	private int pk_user;
+
+	private String loginid;
 
 	private String name;
 
@@ -19,16 +22,28 @@ public class UserVO {
 
 	private RoleVO role;
 
+	private String creatime;
+
+	private String modifytime;
+
 	public UserVO() {
 
 	}
 
-	public int getId() {
-		return id;
+	public int getPk_user() {
+		return pk_user;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPk_user(int pk_user) {
+		this.pk_user = pk_user;
+	}
+
+	public String getLoginid() {
+		return loginid;
+	}
+
+	public void setLoginid(String loginid) {
+		this.loginid = loginid;
 	}
 
 	public String getName() {
@@ -61,6 +76,22 @@ public class UserVO {
 
 	public void setRole(RoleVO role) {
 		this.role = role;
+	}
+
+	public String getCreatime() {
+		return creatime;
+	}
+
+	public void setCreatime(String creatime) {
+		this.creatime = creatime;
+	}
+
+	public String getModifytime() {
+		return modifytime;
+	}
+
+	public void setModifytime(String modifytime) {
+		this.modifytime = modifytime;
 	}
 
 }

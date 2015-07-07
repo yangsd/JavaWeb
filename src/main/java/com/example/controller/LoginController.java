@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.constants.UserConstant;
 import com.example.dao.UserDao;
-import com.example.exception.BusinessException;
-import com.example.util.JsonUtil;
 import com.example.util.RandomCodeUtil;
-import com.example.vo.UserVO;
 
 /**
  * Contoller²âÊÔ
@@ -37,28 +34,6 @@ public class LoginController {
 
 	@Resource
 	UserDao userDao;
-
-	@RequestMapping(value = "/greeting", method = RequestMethod.POST)
-	public @ResponseBody
-	Object greeting(HttpServletRequest request) {
-
-		String pk_id = request.getParameter("id");
-		UserVO user = new UserVO();
-		user.setId(1);
-		user.setName("sdyang");
-		try {
-			// userService.saveUser(user);
-			// List<User> users = userService.getAllUser();
-			userDao.getUserById(1);
-
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
-
-		String obj = JsonUtil.getInstance().toJson("login");
-
-		return obj;
-	}
 
 	/**
 	 * Ö¸ÏòµÇÂ¼Ò³Ãæ

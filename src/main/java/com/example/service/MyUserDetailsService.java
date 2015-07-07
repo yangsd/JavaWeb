@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Resource
 	UserDao userDao;
 
-	public UserDetails loadUserByUsername(String username)
+	public UserDetails loadUserByUsername(String loginId)
 			throws UsernameNotFoundException {
 		UserDetails user = null;
 
@@ -37,9 +37,9 @@ public class MyUserDetailsService implements UserDetailsService {
 		// 我们可以通过dao使用JDBC来访问数据库
 		UserVO userVO;
 		try {
-			userVO = userDao.getUserByName(username);
+			userVO = userDao.getUserByLoginId(loginId);
 
-			user = new User(userVO.getName(), userVO.getPassword().toLowerCase(),
+			user = new User(userVO.getLoginid(), userVO.getPassword().toLowerCase(),
 					true, true, true, true, getAuthorities(userVO.getAccess()));
 
 		} catch (BusinessException e) {

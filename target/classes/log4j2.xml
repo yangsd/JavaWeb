@@ -29,9 +29,14 @@
 	   		 <appender-ref ref="file"/>
 	    </Logger>
 	   -->
+	    <root level="debug">
+            <AppenderRef ref="Console" />
+        </root>
+        <!--  
 		<root level="trace">
 			<appender-ref ref="RollingFile" level = "trace"/>
 			<appender-ref ref="Console" level = "trace"/>	
 		</root>
+		-->
 	</loggers>
 </configuration>

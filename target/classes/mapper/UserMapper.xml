@@ -3,12 +3,54 @@
 <mapper namespace="com.example.service.itf.IUserService"> 
  
     <resultMap id="userMap" type="com.example.vo.UserVO">  
-        <id column="id" property="id" jdbcType="INTEGER" />   
+        <id column="pk_user" property="pk_user" jdbcType="INTEGER" />  
+        <result column="loginid" property="loginid" jdbcType="VARCHAR" /> 
+        <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" /> 
+        <result column="access" property="access" jdbcType="INTEGER" />
+        <result column="creatime" property="creatime" jdbcType="TIMESTAMP" />        
     </resultMap>  
     
-    <select id="selectUserByID" parameterType="java.lang.String" resultMap="userMap">
-       select * from user where id = #{id}
+    <!-- 根据主键查询用户信息 -->
+    <select id="selectUserById" parameterType="java.lang.Integer" resultMap="userMap">
+       select * from user where pk_user = #{pk_user}
 	</select>
+	
+	<!-- 根据登录账户查询用户信息 -->
+	<select id="selectUserByLoginId" parameterType="java.lang.String" resultMap="userMap">
+       select * from user where loginid = #{loginid}
+	</select>
+	
+	<!-- 查询用户的总数 -->
+	<select id="selectUserCount" parameterType="com.example.vo.UserVO" resultType="java.lang.Integer">
+       select count(*) from user where dr = 0
+	</select>
+	
+	<!-- 查询所有用户 -->
+	<select id="selectAllUser" resultMap="userMap">
+       select * from user where dr = 0
+	</select>
+	
+	<!-- 根据查询条件查询用户 -->
+	<select id="queryUser" parameterType="com.example.condition.UserQueryCondition" resultMap="userMap">
+       select * from user 
+       <!-- 
+       <where>
+       	  <trim prefixOverrides="and">  
+                <if test="loginid != null"> and loginid = #{loginid}</if>  
+                <if test="name != null">and name = #{name}</if>   
+          </trim>  
+       </where>
+        -->
+       <if test="offset != null and rows != null">  
+            limit #{offset}, #{rows}  
+        </if>  
+	</select>
+	
+	<!-- 新增用户 -->
+	<insert  id="addUser" parameterType="com.example.vo.UserVO">
+       insert into user(loginid,password,name,access) 
+       values(#{loginid},#{password},#{name},#{access})
+	</insert >
 
 </mapper>  

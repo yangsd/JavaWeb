@@ -14,15 +14,13 @@ $(function(){
         toolbar:'#tb',
         footer:'#ft',
 	    columns:[[     
-	        {field:'itemid',title:'Item ID',width:80},     
-	        {field:'productid',title:'Product',width:100,
+	        {field:'loginid',title:'Login ID',width:80,
 	        	formatter: function(value,row,index){
-	            return '<a href="userEdit">view</a>';	
-	        }  	},     
-	        {field:'listprice',title:'List Price',width:80,align:'right'},
-	        {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
-	        {field:'attr1',title:'Attribute',width:240,align:'right'},
-	        {field:'status',title:'Status',width:60,align:'center'}
+		            return '<a href="userDetail?id='+row.pk_user+'">'+value+'</a>';	
+		        }  	},     
+	        {field:'name',title:'User name',width:100},     
+	        {field:'access',title:'Access',width:80,align:'center'},
+	        {field:'creatime',title:'Creatime',width:150}
 	    ]]     
 	});  
 });
@@ -46,7 +44,7 @@ $(function(){
      var queryParams = $('#usertable').datagrid('options').queryParams;  
      getQueryParams(queryParams);  
      
-     var data = {"total":2,"rows":[{"productname":"D","unitcost":10.0,"status":"B","listprice":20.0,"attr1":"C","itemid":"D"},{"productname":"D","unitcost":5.0,"status":"T","listprice":20.0,"attr1":"E","itemid":"F"}]};
+     var data = {"total":2,"rows":[{"loginid":"D","name":"sdyang","access":"admin","creatime":20.0},{"loginid":"A","name":"abc","access":"user","creatime":20.0}]};
      
      //使用ajax请求查询数据
      

@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/main/webapp/plugins/unused/Chart.min.js,src/main/webapp/tool/jquery.js,src/main/webapp/js/jquery-2.1.4.min.js,src/main/resources/springmvc-servlet.xml,src/main/webapp/WEB-INF/web.xml,src/main/resources/spring-mybatis.xml,src/main/webapp/plugins/Chart.min.js,src/main/webapp/plugins/jquery-2.1.4.min.js,src/main/webapp/js/bootstrap.min.js,src/main/webapp/WEB-INF/spring-servlet.xml
+validator.Unchecked=

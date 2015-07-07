@@ -2,48 +2,54 @@
 <html lang="zh-CN">
 <head>
     <#include "./common/common.ftl"/>
+    <script src="user/js/user_add.js"></script>
 	<title>user_add</title>
 </head>
 <body>
-	<#assign active='user_add'/>
+	<#assign active='user'/>
 	<#include "./common/navbar-user.ftl"/>
 		
 	<div class="easyui-panel" title="User Add" style="width:800px">
-        <!--
-        <div style="padding:10px 60px 20px 60px">
-        -->
-        <form id="ff" method="post">
+        
+        <form id="ff"  name="test" method="post">
             <table cellpadding="10">
                 <tr>
+                    <td>Login Id:</td>
+                    <td><input  type="text" name="loginid" ></input></td>
+                
+                    <td>Password:</td>
+                    <td><input  type="text" name="password" ></input></td>
+                </tr>
+                <tr>
                     <td>Name:</td>
-                    <td><input class="easyui-textbox" disable="disable" type="text" name="name" data-options="required:true"></input></td>
+                    <td><input  type="text" name="name" ></input></td>
                 
-                    <td>Email:</td>
-                    <td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
-                </tr>
-                <tr>
-                    <td>Subject:</td>
-                    <td><input class="easyui-textbox" type="text" name="subject" data-options="required:true"></input></td>
-                
-                    <td>Message:</td>
-                    <td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px"></input></td>
-                </tr>
-                <tr>
-                    <td>Language:</td>
+                	 <td>Access:</td>
                     <td>
-                        <select class="easyui-combobox" name="language">
-                        <option value="ar">Arabic</option>
-                        <option value="bg">Bulgarian</option>
-                        <option value="ro">Romanian</option>
-                        <option value="ru">Russian</option>
-                        <option value="sk">Slovak</option>
-                        <option value="sl">Slovenian</option>
-                        <option value="es">Spanish</option>
+                        <select name="access">
+	                        <option value="2">common</option>
+	                        <option value="1">admin</option>                     
                         </select>
                     </td>
-                    <td></td>
-                    <td><button type="button" class="btn btn-default">save</button></td>
+                    
+               
+                </tr>
+                <tr>
+                 
+                	<td></td><td></td><td></td>
+                	<td><input id="save" type="button" class="btn btn-default" value="save"/></td>
+                </tr>
+                
+                 <!--
+                 <tr>
+                	
+                	<td><input class="easyui-textbox" type="text" name="loginid" data-options="required:true"></input></td>
+                
+                    <td>Message:</td>
+                    <td><input class="easyui-textbox" name="remark" data-options="multiline:true" style="height:60px"></input></td>
+                    
                  </tr>
+                 -->
             </table>
         </form>
         </div>

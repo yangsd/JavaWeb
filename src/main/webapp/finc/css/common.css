@@ -1,0 +1,14 @@
+.textfield{
+	margin-left:2px;
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border: none;
+	border-top:1px solid #FFFFFF;
+	border-bottom:1px solid #ABADB3;
+	display: inline;
+	width: 142px;
+	readOnly:true;
+}
