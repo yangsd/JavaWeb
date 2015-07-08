@@ -20,15 +20,12 @@
     
     <!-- ²éÑ¯Ìõ¼þ  -->
     <div id="tb" style="padding:2px 5px;">
-        Date From: <input id="startTime" class="easyui-datebox" style="width:110px">
+        Date From: <input id="beginTime" class="easyui-datebox" style="width:110px">
         To: <input id="endTime" class="easyui-datebox" style="width:110px">
         Language: 
-        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
-            <option value="java">Java</option>
-            <option value="c">C</option>
-            <option value="basic">Basic</option>
-            <option value="perl">Perl</option>
-            <option value="python">Python</option>
+        <select id="access" class="easyui-combobox" panelHeight="auto" style="width:100px">
+            <option value="2">user</option>
+            <option value="1">admin</option>]
         </select>
         <a href="javascript:reloadgrid()" id="search" class="easyui-linkbutton" iconCls="icon-search">Search</a>
     </div>

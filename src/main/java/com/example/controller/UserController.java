@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.condition.UserQueryCondition;
 import com.example.constants.RoleConstant;
 import com.example.dao.UserDao;
 import com.example.exception.BusinessException;
@@ -81,15 +82,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
-	public ModelAndView getUserDetail(@RequestParam("id") String id) throws NumberFormatException, BusinessException {
+	public ModelAndView getUserDetail(@RequestParam("id") String id)
+			throws NumberFormatException, BusinessException {
 
 		UserVO user = userDao.getUserById(Integer.parseInt(id));
 		ModelAndView view = new ModelAndView();
 
-		view.addObject("loginid",user.getLoginid());
+		view.addObject("loginid", user.getLoginid());
 		view.addObject("name", user.getName());
-		view.addObject("access",RoleConstant.ACCESS.get(user.getAccess()));		
-		view.addObject("creatime",user.getCreatime());
+		view.addObject("access", RoleConstant.ACCESS.get(user.getAccess()));
+		view.addObject("creatime", user.getCreatime());
 		view.setViewName("user/user_detail");
 
 		return view;
@@ -118,23 +120,26 @@ public class UserController {
 	 * @param request
 	 * @param response
 	 * @throws IOException
-	 * @throws BusinessException 
+	 * @throws BusinessException
 	 */
-	@RequestMapping(value = "/userPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/userPage", method = RequestMethod.POST)
 	public void getPage(@RequestParam("page") Integer page,
-			@RequestParam("rows") Integer rows, HttpServletRequest request,
+			@RequestParam("rows") Integer rows,@RequestParam("beginTime") String beginTime,
+			@RequestParam("endTime") String endTime,@RequestParam("access") String access,
+			HttpServletRequest request,
 			HttpServletResponse response) throws IOException, BusinessException {
 
 		PageResult result = new PageResult();
-		List<UserVO> users = userDao.getAllUser();
-		
-		/*
+
 		UserQueryCondition params = new UserQueryCondition();
 		params.setCurrentPage(page);
 		params.setRows(rows);
 		params.calculateOffset();
+		params.setAccess(access);
+		params.setBeginTime(beginTime);
+		params.setEndTime(endTime);
 		List<UserVO> users = userDao.getUsers(params);
-		*/
+
 		result.setTotal(userDao.getUserCount());
 		result.setRows(users);
 

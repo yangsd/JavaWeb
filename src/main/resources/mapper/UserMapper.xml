@@ -7,9 +7,15 @@
         <result column="loginid" property="loginid" jdbcType="VARCHAR" /> 
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" /> 
+        <!--  
         <result column="access" property="access" jdbcType="INTEGER" />
-        <result column="creatime" property="creatime" jdbcType="TIMESTAMP" />        
+        <result column="creatime" property="creatime" jdbcType="TIMESTAMP" /> 
+        <result column="creatime" property="beginTime" jdbcType="TIMESTAMP" />  
+        <result column="creatime" property="endTime" jdbcType="TIMESTAMP" /> 
+        -->    
     </resultMap>  
+    
+    
     
     <!-- 根据主键查询用户信息 -->
     <select id="selectUserById" parameterType="java.lang.Integer" resultMap="userMap">
@@ -31,17 +37,21 @@
        select * from user where dr = 0
 	</select>
 	
+	<!-- <![CDATA[ ]]> -->
 	<!-- 根据查询条件查询用户 -->
 	<select id="queryUser" parameterType="com.example.condition.UserQueryCondition" resultMap="userMap">
        select * from user 
-       <!-- 
+      
        <where>
        	  <trim prefixOverrides="and">  
                 <if test="loginid != null"> and loginid = #{loginid}</if>  
-                <if test="name != null">and name = #{name}</if>   
+                <if test="name != null">and name = #{name}</if>  
+                <if test="access != null">and access = #{access}</if>                  
+                <if test="beginTime != null and endTime != null">and creatime between date_format(#{beginTime},'%Y%m%d') and date_format(#{endTime},'%Y%m%d')</if> 
+                
           </trim>  
        </where>
-        -->
+        
        <if test="offset != null and rows != null">  
             limit #{offset}, #{rows}  
         </if>  

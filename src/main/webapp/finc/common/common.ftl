@@ -23,3 +23,5 @@
 
 <!---->
 <script type="text/javascript" src="../plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../plugins/easyui-lang-zh_CN.js"></script>
+

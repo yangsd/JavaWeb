@@ -110,8 +110,9 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 
 	public List<UserVO> getUsers(UserQueryCondition params)
 			throws BusinessException {
-		
-		return null;
+		List<UserVO> users = null;
+		users = sqlSession.selectList(NAMESPACE + "queryUser",params);
+		return users;
 	}
 
 	
