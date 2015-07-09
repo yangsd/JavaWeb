@@ -20,6 +20,8 @@ public class UserQueryCondition extends PageCondition {
 
 	private String endTime;
 
+	private String dr;
+
 	public String getLoginid() {
 		return loginid;
 	}
@@ -58,6 +60,14 @@ public class UserQueryCondition extends PageCondition {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getDr() {
+		return dr;
+	}
+
+	public void setDr(String dr) {
+		this.dr = dr;
 	}
 
 }

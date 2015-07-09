@@ -17,8 +17,22 @@ function submit(){
 	    	return true;
 	    },  
 	    success:function(data){  
-	        window.location.href="userDetail?id="+data;
-
+	    	if(data){
+		    	bootbox.alert({ 
+		    	    size: 'small',
+		    	    message: "add user success !", 
+		    	    callback: function(){ window.location.href="userDetail?id="+data; }
+		    	});
+	    	}
 	    }
 	}); 
 };
+
+
+function prompt(){   
+	$.messager.prompt('提示:','请输入消息.',function(r){   
+		if(r){   
+			alert("你输入的文本是:"+r);   
+		}   
+	});   
+}  

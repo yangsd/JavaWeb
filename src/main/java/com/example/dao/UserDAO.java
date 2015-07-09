@@ -34,7 +34,7 @@ public interface UserDao {
 	 * @param user
 	 * @throws BusinessException
 	 */
-	public void deleteUser(UserVO user) throws BusinessException;
+	public Boolean deleteUser(UserVO pk_user) throws BusinessException;
 
 	/**
 	 * 更新用户信息
@@ -44,7 +44,7 @@ public interface UserDao {
 	 * @param user
 	 * @throws BusinessException
 	 */
-	public void updateUser(UserVO user) throws BusinessException;
+	public String updateUser(UserVO user) throws BusinessException;
 
 	/**
 	 * 根据主键查询用户信息

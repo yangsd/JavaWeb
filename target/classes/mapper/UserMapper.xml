@@ -47,8 +47,8 @@
                 <if test="loginid != null"> and loginid = #{loginid}</if>  
                 <if test="name != null">and name = #{name}</if>  
                 <if test="access != null">and access = #{access}</if>                  
-                <if test="beginTime != null and endTime != null">and creatime between date_format(#{beginTime},'%Y%m%d') and date_format(#{endTime},'%Y%m%d')</if> 
-                
+                <if test="beginTime != null and endTime != null">and creatime between date_format(#{beginTime},'%Y%m%d') and date_format(#{endTime},'%Y%m%d')+1</if> 
+                <if test="dr != null">and dr = #{dr}</if>
           </trim>  
        </where>
         
@@ -62,5 +62,19 @@
        insert into user(loginid,password,name,access) 
        values(#{loginid},#{password},#{name},#{access})
 	</insert >
+	
+	<!-- 更新用户 -->
+	<update id="updateUserById" parameterType="com.example.vo.UserVO">  
+        update user  
+        <set>  
+            <if test="loginid != null">loginid = #{loginid},</if>  
+            <if test="name != null">name = #{name},</if>   
+            <if test="access != null">access = #{access},</if> 
+            <if test="modifytime != null">modifytime = #{modifytime},</if> 
+            <if test="dr != null">dr = 1,</if>  
+        </set>  
+        where pk_user = #{pk_user}  
+    </update>  
+    
 
 </mapper>  

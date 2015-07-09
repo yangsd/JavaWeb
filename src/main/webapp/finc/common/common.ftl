@@ -21,7 +21,10 @@
 <script type="text/javascript" src="../plugins/jqxchart/jqxdraw.js"></script>
 <script type="text/javascript" src="../plugins/jqxchart/jqxchart.core.js"></script>
 
-<!---->
+<!--easyui-->
 <script type="text/javascript" src="../plugins/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../plugins/easyui-lang-zh_CN.js"></script>
+
+<!-- bootstrap弹框  -->
+<script type="text/javascript" src="../plugins/bootbox.js"></script>
 

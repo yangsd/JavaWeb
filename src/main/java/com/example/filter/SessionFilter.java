@@ -100,11 +100,10 @@ public class SessionFilter implements Filter {
 
 	/**
 	 * 判断是不需要安全认证的url
-	 * 
+	 * @author sdyang
+	 * @date 2015年7月9日 下午3:53:37
 	 * @param context
 	 * @return
-	 * @author:孟志昂
-	 * @date:2013-6-14 上午11:45:59
 	 */
 	private boolean isNoProtected(String context) {
 		String[] urls = new String[] { UrlConstant.LOGIN,

@@ -8,7 +8,13 @@
 <body>
 	<#assign active='user'/>
 	<#include "./common/navbar-user.ftl"/>
-		
+	
+	
+	<button id="edit"  class="btn btn-default" onclick="edit(${pk_user})">Edit</button>
+	<button id="delete"  class="btn btn-default" onclick="deleteUser(${pk_user})">Delete</button>
+	
+	<hr width="80%" size=5 />
+	
 	<div class="easyui-panel" title="User Detail" style="width:800px">
         
       

@@ -157,7 +157,7 @@ public class MyExceptionResolver extends AbstractHandlerExceptionResolver {
 	private ModelAndView handleBusinessException(BusinessException ex,
 			HttpServletRequest request, HttpServletResponse response,
 			Object handler) {
-		ModelAndView model = new ModelAndView("html/error/error.jsp");
+		ModelAndView model = new ModelAndView("html/error/error");
 		ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
 		PrintStream pstream = new PrintStream(byteOut);
 		ex.printStackTrace(pstream);

@@ -25,7 +25,7 @@ $(function(){
 	    columns:[[     
 	        {field:'loginid',title:'Login ID',width:80,
 	        	formatter: function(value,row,index){
-		            return '<a href="userDetail?id='+row.pk_user+'">'+value+'</a>';	
+		            return '<a href="userDetail?pk_user='+row.pk_user+'">'+value+'</a>';	
 		        }  	},     
 	        {field:'name',title:'User name',width:100},     
 	        {field:'access',title:'Access',width:80,align:'center'},

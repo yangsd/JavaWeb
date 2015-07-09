@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +32,7 @@ import com.example.vo.UserVO;
  * @author sdyang
  * @date 2015年7月1日 下午5:08:31
  */
+@Transactional
 @Controller
 @RequestMapping("/finc")
 public class UserController {
@@ -82,12 +86,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
-	public ModelAndView getUserDetail(@RequestParam("id") String id)
+	public ModelAndView getUserDetail(@RequestParam("pk_user") String id)
 			throws NumberFormatException, BusinessException {
 
 		UserVO user = userDao.getUserById(Integer.parseInt(id));
 		ModelAndView view = new ModelAndView();
-
+		
+		view.addObject("pk_user",user.getPk_user());
 		view.addObject("loginid", user.getLoginid());
 		view.addObject("name", user.getName());
 		view.addObject("access", RoleConstant.ACCESS.get(user.getAccess()));
@@ -103,11 +108,23 @@ public class UserController {
 	 * @author sdyang
 	 * @date 2015年7月1日 下午5:20:59
 	 * @return
+	 * @throws BusinessException 
+	 * @throws NumberFormatException 
 	 */
 	@RequestMapping(value = "/userEdit", method = RequestMethod.GET)
-	public String getUserEdit(HttpServletRequest request) {
+	public ModelAndView getUserEdit(@RequestParam("pk_user") String pk_user) throws NumberFormatException, BusinessException {
+		
+		UserVO user = userDao.getUserById(Integer.parseInt(pk_user));
+		ModelAndView view = new ModelAndView();
+		
+		view.addObject("pk_user",user.getPk_user());
+		view.addObject("loginid", user.getLoginid());
+		view.addObject("name", user.getName());
+		view.addObject("access", user.getAccess());
+		view.addObject("creatime", user.getCreatime());
+		view.setViewName("user/user_edit");
 
-		return "/user/user_edit";
+		return view;
 
 	}
 
@@ -138,6 +155,7 @@ public class UserController {
 		params.setAccess(access);
 		params.setBeginTime(beginTime);
 		params.setEndTime(endTime);
+		params.setDr("0");
 		List<UserVO> users = userDao.getUsers(params);
 
 		result.setTotal(userDao.getUserCount());
@@ -152,4 +170,50 @@ public class UserController {
 		pw.close();
 
 	}
+	
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public @ResponseBody
+	String updateUser(@RequestParam("pk_user") Integer pk_user,
+			@RequestParam("loginid") String loginid,
+			@RequestParam("name") String name,
+			@RequestParam("access") String access) throws BusinessException {
+
+		UserVO user = new UserVO();
+		user.setPk_user(pk_user);
+		user.setLoginid(loginid);
+		user.setName(name);
+		user.setAccess(Integer.parseInt(access));
+		
+		//获取当前时间
+		Date now = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		user.setModifytime(format.format(now));
+
+		String loginId = userDao.updateUser(user);
+
+		return loginId;
+
+	}
+	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public @ResponseBody
+		String updateUser(@RequestParam("pk_user") Integer pk_user) throws BusinessException {
+
+		UserVO user = new UserVO();
+		user.setPk_user(pk_user);
+		user.setDr("1");
+		
+		//获取当前时间
+		Date now = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		user.setModifytime(format.format(now));
+
+		userDao.updateUser(user);
+
+		return JsonUtil.getInstance().toJson("success");
+
+	}
+
 }

@@ -54,9 +54,6 @@
 			    <ul class="dropdown-menu">
 				    <li><a href="/JavaWeb/finc/userList">List</a></li>
 		            <li><a href="/JavaWeb/finc/userAdd">Add</a></li>
-		            <li><a href="/JavaWeb/finc/userEdit">Edit</a></li>
-		            <li><a href="#">Separated link</a></li>
-		            <li><a href="#">One more separated link</a></li>
 			    </ul>
 		    </li>
 	    <#else>
@@ -67,9 +64,6 @@
 			    <ul class="dropdown-menu">
 				    <li><a href="/JavaWeb/finc/userList">List</a></li>
 		            <li><a href="/JavaWeb/finc/userAdd">Add</a></li>
-		            <li><a href="/JavaWeb/finc/userEdit">Edit</a></li>
-		            <li><a href="#">Separated link</a></li>
-		            <li><a href="#">One more separated link</a></li>
 			    </ul>
 		    </li>
 	    </#if>

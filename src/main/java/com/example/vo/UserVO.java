@@ -1,6 +1,5 @@
 package com.example.vo;
 
-
 /**
  * 用户
  * 
@@ -25,6 +24,11 @@ public class UserVO {
 	private String creatime;
 
 	private String modifytime;
+
+	/**
+	 * 逻辑删除标识
+	 */
+	private String dr;
 
 	public UserVO() {
 
@@ -92,6 +96,14 @@ public class UserVO {
 
 	public void setModifytime(String modifytime) {
 		this.modifytime = modifytime;
+	}
+
+	public String getDr() {
+		return dr;
+	}
+
+	public void setDr(String dr) {
+		this.dr = dr;
 	}
 
 }

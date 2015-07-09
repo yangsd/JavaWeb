@@ -3,6 +3,7 @@
 <head>
     <#include "./common/common.ftl"/>
 	<title>error</title>
+	${exceptionMessage}
 </head>
 <body>
 	<h1>Error</h1>

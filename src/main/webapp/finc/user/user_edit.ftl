@@ -13,31 +13,30 @@
         
         <form id="ff"  method="post">
             <table cellpadding="10">
+            <input  type="text" name="pk_user" value="${pk_user}" style="display:none;"></input>
                 <tr>
                     <td>Login Id:</td>
-                    <td><input  type="text" name="loginid" ></input></td>
-                
-                    <td>Password:</td>
-                    <td><input  type="text" name="password" ></input></td>
-                </tr>
-                <tr>
+                    <td><input  type="text" name="loginid" value="${loginid}"></input></td>
+                                  
                     <td>Name:</td>
-                    <td><input  type="text" name="name" ></input></td>
-                
+                    <td><input  type="text" name="name" value="${name}"></input></td>
+                 </tr>
+                <tr>
                 	 <td>Access:</td>
                     <td>
-                        <select name="access">
-	                        <option value="2">common</option>
-	                        <option value="1">admin</option>                     
+                        <select name="access" value="${access}">
+	                        <option value="2" <#if (((access)!'') == '2')>selected="selected"</#if> >common</option>
+	                        <option value="1" <#if (((access)!'') == '1')>selected="selected"</#if> >admin</option>                     
                         </select>
                     </td>
                     
+                  
                
                 </tr>
                 <tr>
                  
                 	<td></td><td></td><td></td>
-                	<td><input id="save" type="button" class="btn btn-default" value="save"/></td>
+                	<td><input id="save" type="button" class="btn btn-default" value="save" onclick="save()"/></td>
                 </tr>
                 
                  <!--

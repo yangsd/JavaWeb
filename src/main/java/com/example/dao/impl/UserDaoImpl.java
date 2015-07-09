@@ -25,6 +25,9 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 
 	public String addUser(UserVO user) throws BusinessException {
 
+		if(getUserByLoginId(user.getLoginid())!=null){
+			throw new BusinessException("该用户"+user.getLoginid()+"已经存在！");
+		}
 		int result = sqlSession.insert(NAMESPACE + "addUser", user);
 
 		if (result <= 0) {
@@ -35,13 +38,27 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 		}
 	}
 
-	public void deleteUser(UserVO user) throws BusinessException {
-		// TODO Auto-generated method stub
-
+	public Boolean deleteUser(UserVO user) throws BusinessException {
+		
+		int result = sqlSession.update(NAMESPACE + "updateUserById", user);
+		
+		if (result <= 0) {
+			throw new BusinessException("failure to delete user !");
+		} else {
+			return true;
+		}
 	}
 
-	public void updateUser(UserVO user) throws BusinessException {
-		// TODO Auto-generated method stub
+	public String updateUser(UserVO user) throws BusinessException {
+		
+		int result = sqlSession.update(NAMESPACE + "updateUserById", user);
+		
+		if (result <= 0) {
+			throw new BusinessException("failure to update user !");
+		} else {
+			// 修改成功则返回用户主键
+			return user.getPk_user()+"";
+		}
 
 	}
 
@@ -61,6 +78,8 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 		UserVO user = sqlSession.selectOne(NAMESPACE + "selectUserByLoginId",
 				loginId);
 
+		return user;
+		/*
 		if (user != null) {
 			return user;
 		} else {
@@ -74,6 +93,7 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 			}
 		}
 		throw new BusinessException("User does not exist!");
+		*/
 	}
 
 	private List<UserVO> initUsers() {
