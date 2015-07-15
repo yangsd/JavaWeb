@@ -23,77 +23,37 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 
 	private static String NAMESPACE = "com.example.service.itf.IUserService.";
 
-	public String addUser(UserVO user) throws BusinessException {
-
-		if(getUserByLoginId(user.getLoginid())!=null){
-			throw new BusinessException("该用户"+user.getLoginid()+"已经存在！");
-		}
-		int result = sqlSession.insert(NAMESPACE + "addUser", user);
-
-		if (result <= 0) {
-			throw new BusinessException("failure to insert a new user !");
-		} else {
-			// 新增用户成功则返回用户主键
-			return getUserByLoginId(user.getLoginid()).getPk_user() + "";
-		}
+	public int addUser(UserVO user) throws BusinessException {
+		return sqlSession.insert(NAMESPACE + "addUser", user);
 	}
 
-	public Boolean deleteUser(UserVO user) throws BusinessException {
-		
-		int result = sqlSession.update(NAMESPACE + "updateUserById", user);
-		
-		if (result <= 0) {
-			throw new BusinessException("failure to delete user !");
-		} else {
-			return true;
-		}
+	public int deleteUser(UserVO user) throws BusinessException {
+		return sqlSession.update(NAMESPACE + "updateUserById", user);
 	}
 
-	public String updateUser(UserVO user) throws BusinessException {
-		
-		int result = sqlSession.update(NAMESPACE + "updateUserById", user);
-		
-		if (result <= 0) {
-			throw new BusinessException("failure to update user !");
-		} else {
-			// 修改成功则返回用户主键
-			return user.getPk_user()+"";
-		}
-
+	public int updateUser(UserVO user) throws BusinessException {
+		return sqlSession.update(NAMESPACE + "updateUserById", user);
 	}
 
 	public UserVO getUserById(int id) throws BusinessException {
-		UserVO user = sqlSession.selectOne(NAMESPACE + "selectUserById", id);
-		return user;
+		return sqlSession.selectOne(NAMESPACE + "selectUserById", id);
 	}
 
 	public List<UserVO> getAllUser() throws BusinessException {
-		List<UserVO> users = null;
-		users = sqlSession.selectList(NAMESPACE + "selectAllUser");
-		return users;
+		return sqlSession.selectList(NAMESPACE + "selectAllUser");
 	}
 
 	public UserVO getUserByLoginId(String loginId) throws BusinessException {
 
-		UserVO user = sqlSession.selectOne(NAMESPACE + "selectUserByLoginId",
-				loginId);
-
-		return user;
+		return sqlSession.selectOne(NAMESPACE + "selectUserByLoginId", loginId);
 		/*
-		if (user != null) {
-			return user;
-		} else {
-			// 如果数据库里没有用户的数据，则使用初始化的用户数据
-			List<UserVO> users = initUsers();
-
-			for (UserVO User : users) {
-				if (User.getLoginid().equals(loginId) == true) {
-					return User;
-				}
-			}
-		}
-		throw new BusinessException("User does not exist!");
-		*/
+		 * if (user != null) { return user; } else { //
+		 * 如果数据库里没有用户的数据，则使用初始化的用户数据 List<UserVO> users = initUsers();
+		 * 
+		 * for (UserVO User : users) { if (User.getLoginid().equals(loginId) ==
+		 * true) { return User; } } } throw new
+		 * BusinessException("User does not exist!");
+		 */
 	}
 
 	private List<UserVO> initUsers() {
@@ -124,17 +84,12 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 	}
 
 	public int getUserCount() throws BusinessException {
-		int result = sqlSession.selectOne(NAMESPACE + "selectUserCount");
-		return result;
+		return sqlSession.selectOne(NAMESPACE + "selectUserCount");
 	}
 
 	public List<UserVO> getUsers(UserQueryCondition params)
 			throws BusinessException {
-		List<UserVO> users = null;
-		users = sqlSession.selectList(NAMESPACE + "queryUser",params);
-		return users;
+		return sqlSession.selectList(NAMESPACE + "queryUser", params);
 	}
-
-	
 
 }

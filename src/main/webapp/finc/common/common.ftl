@@ -4,27 +4,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
 <#--css样式 -->
-<link href="../themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">	  
-<link href="../themes/jqxchart/jqx.base.css" rel="stylesheet" />
-<link href="../themes/easyui/default/easyui.css" rel="stylesheet">
-<link href="../themes/easyui/icon.css" rel="stylesheet">
+<link href="/JavaWeb/themes/bootstrap/css/bootstrap.min.css" rel="stylesheet">	  
+<link href="/JavaWeb/themes/jqxchart/jqx.base.css" rel="stylesheet" />
+<link href="/JavaWeb/themes/easyui/default/easyui.css" rel="stylesheet">
+<link href="/JavaWeb/themes/easyui/icon.css" rel="stylesheet">
 
 <#-- jquery -->
-<script src="../plugins/jquery-2.1.4.js"></script>
+<script src="/JavaWeb/plugins/jquery-2.1.4.js"></script>
 
 <#-- bootstrap -->
-<script src="../plugins/bootstrap.js"></script>	
+<script src="/JavaWeb/plugins/bootstrap.js"></script>	
 
 <#-- jqxchart -->
-<script type="text/javascript" src="../plugins/jqxchart/jqxcore.js"></script>
-<script type="text/javascript" src="../plugins/jqxchart/jqxdata.js"></script>
-<script type="text/javascript" src="../plugins/jqxchart/jqxdraw.js"></script>
-<script type="text/javascript" src="../plugins/jqxchart/jqxchart.core.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/jqxchart/jqxcore.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/jqxchart/jqxdata.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/jqxchart/jqxdraw.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/jqxchart/jqxchart.core.js"></script>
 
 <!--easyui-->
-<script type="text/javascript" src="../plugins/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../plugins/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/easyui-lang-zh_CN.js"></script>
 
 <!-- bootstrap弹框  -->
-<script type="text/javascript" src="../plugins/bootbox.js"></script>
+<script type="text/javascript" src="/JavaWeb/plugins/bootbox.js"></script>
 
+<!-- bootstrap-datetimepicker  -->
+<script type="text/javascript" src="/JavaWeb/plugins/bootstrap-datetimepicker.min.js"></script>
+<link href="/JavaWeb/themes/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">

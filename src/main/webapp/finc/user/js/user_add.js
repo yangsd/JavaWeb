@@ -21,7 +21,7 @@ function submit(){
 		    	bootbox.alert({ 
 		    	    size: 'small',
 		    	    message: "add user success !", 
-		    	    callback: function(){ window.location.href="userDetail?id="+data; }
+		    	    callback: function(){ window.location.href="userDetail?pk_user="+data; }
 		    	});
 	    	}
 	    }

@@ -39,10 +39,10 @@
 	    </#if>
 	    
 	    
-	    <#if active == "1">
-			<li role="presentation" class="active"><a href="#">Messages</a></li>
+	    <#if active == "file"> 	    	
+			<li role="presentation" class="active"><a href="/JavaWeb/finc/file">File</a></li>
 		<#else>
-			<li role="presentation"><a href="#">Messages</a></li>
+			<li role="presentation"><a href="/JavaWeb/finc/file">File</a></li>
 		</#if>
 				
 		
