@@ -82,6 +82,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 		if (StringUtils.isEmpty(validateCodeParameter)
 				|| !sessionValidateCode.equalsIgnoreCase(validateCodeParameter)) {
+			//清除验证码
+			request.getSession().removeAttribute(UserConstant.SESSION_VERIFICATIONCODE);
+			
 			throw new AuthenticationServiceException("验证码错误，请重新输入！");
 		}
 	}
