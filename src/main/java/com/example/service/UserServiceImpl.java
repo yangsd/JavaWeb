@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
 		excel.setExcelHead(excelHead);
 
 		ExcelUtils util = new ExcelUtils();
-		HSSFWorkbook wb = util.getData(excel);
+		HSSFWorkbook wb = util.writeData(excel);
 
 		response.setHeader("Content-Disposition", "inline; filename="
 				+ fileName);

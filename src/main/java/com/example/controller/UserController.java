@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +25,7 @@ import com.example.constants.RoleConstant;
 import com.example.exception.BusinessException;
 import com.example.itf.UserService;
 import com.example.page.PageResult;
+import com.example.util.ExcelUtils;
 import com.example.util.JsonUtil;
 import com.example.util.MD5;
 import com.example.vo.UserVO;
@@ -226,16 +228,25 @@ public class UserController {
 	public void download(HttpServletRequest request,
 			HttpServletResponse response) throws BusinessException {
 
-		userService.downLoadFile(response);		
+		userService.downLoadFile(response);
 	}
+
+	@RequestMapping(value = "/userUpload", method = RequestMethod.POST)
+	public @ResponseBody
+	String upLoad(@RequestParam("file") CommonsMultipartFile file,
+			HttpServletRequest request, HttpServletResponse response)
+			throws BusinessException {
+		InputStream in;
+		if (!file.isEmpty()) {
+			try {
+				ExcelUtils.readData(file.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+				throw new BusinessException("上传文件失败！");
+			}
+		}
+		return "success";
+	}
+
 	
-	@RequestMapping(value = "/file/userUpload",method = RequestMethod.POST)
-	public @ResponseBody 
-	String upLoad(@RequestParam("file") CommonsMultipartFile   file,HttpServletRequest request,
-			HttpServletResponse response) throws BusinessException {
-
-		userService.upLoadFile(request, response);
-		return "";
-	}
-
 }
