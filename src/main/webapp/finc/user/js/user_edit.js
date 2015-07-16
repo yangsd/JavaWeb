@@ -17,11 +17,13 @@ function submit(){
 	    	return true;
 	    },  
 	    success:function(data){  
-	    	bootbox.alert({ 
-	    	    size: 'small',
-	    	    message: "update user success,return to user list page !", 
-	    	    callback: function(){ window.location.href="userDetail?pk_user="+data; }
-	    	});
+	    	$.messager.alert('Tips','update user success,return to user list page !','info',function(){ window.location.href="userDetail?pk_user="+data; });
+    		
+//	    	bootbox.alert({ 
+//	    	    size: 'small',
+//	    	    message: "update user success,return to user list page !", 
+//	    	    callback: function(){ window.location.href="userDetail?pk_user="+data; }
+//	    	});
 	        
 
 	    }

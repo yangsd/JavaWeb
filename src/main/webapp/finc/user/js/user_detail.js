@@ -14,12 +14,14 @@ function deleteUser(id){
         	if(data.detail){
        	 		alert(data.detail);
         	}else{
+        		$.messager.alert('Tips','delete user success,return to user list page !','info',function(){ window.location.href="/JavaWeb/finc/userList"; });
+        		/*
         		bootbox.alert({ 
 		    	    size: 'small',
 		    	    message: "delete user success,return to user list page !", 
 		    	    callback: function(){ window.location.href="/JavaWeb/finc/userList"; }
 		    	});
-        		
+        		*/
         	}
         },
 	     error : function(request, error, status) {

@@ -26,7 +26,9 @@
 <script type="text/javascript" src="/JavaWeb/plugins/easyui-lang-zh_CN.js"></script>
 
 <!-- bootstrap弹框  -->
+<!--
 <script type="text/javascript" src="/JavaWeb/plugins/bootbox.js"></script>
+-->
 
 <!-- bootstrap-datetimepicker  -->
 <script type="text/javascript" src="/JavaWeb/plugins/bootstrap-datetimepicker.min.js"></script>

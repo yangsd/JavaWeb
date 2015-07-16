@@ -18,11 +18,13 @@ function submit(){
 	    },  
 	    success:function(data){  
 	    	if(data){
-		    	bootbox.alert({ 
-		    	    size: 'small',
-		    	    message: "add user success !", 
-		    	    callback: function(){ window.location.href="userDetail?pk_user="+data; }
-		    	});
+	    		$.messager.alert('Tips','add user success !','info',function(){ window.location.href="userDetail?pk_user="+data; });
+        		
+//		    	bootbox.alert({ 
+//		    	    size: 'small',
+//		    	    message: "add user success !", 
+//		    	    callback: function(){ window.location.href="userDetail?pk_user="+data; }
+//		    	});
 	    	}
 	    }
 	}); 
