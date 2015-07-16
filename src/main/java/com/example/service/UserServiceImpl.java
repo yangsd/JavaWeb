@@ -81,8 +81,8 @@ public class UserServiceImpl implements UserService {
 		return userDao.getAllUser();
 	}
 
-	public int getUserCount() throws BusinessException {
-		return userDao.getUserCount();
+	public int getUserCount(UserQueryCondition params) throws BusinessException {
+		return userDao.getUserCount(params);
 	}
 
 	public List<UserVO> getUsers(UserQueryCondition params)

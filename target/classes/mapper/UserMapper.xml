@@ -28,8 +28,17 @@
 	</select>
 	
 	<!-- 查询用户的总数 -->
-	<select id="selectUserCount" parameterType="com.example.vo.UserVO" resultType="java.lang.Integer">
-       select count(*) from user where dr = 0
+	<select id="selectUserCount" parameterType="com.example.condition.UserQueryCondition" resultType="java.lang.Integer">
+       select count(*) from user 
+       <where>
+       	  <trim prefixOverrides="and">  
+                <if test="loginid != null"> and loginid = #{loginid}</if>  
+                <if test="name != null">and name = #{name}</if>  
+                <if test="access != null">and access = #{access}</if>                  
+                <if test="beginTime != null and endTime != null">and creatime between date_format(#{beginTime},'%Y%m%d') and date_format(#{endTime},'%Y%m%d')+1</if> 
+                <if test="dr != null">and dr = #{dr}</if>
+          </trim>  
+       </where>
 	</select>
 	
 	<!-- 查询所有用户 -->

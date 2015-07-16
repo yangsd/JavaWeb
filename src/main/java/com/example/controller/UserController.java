@@ -165,7 +165,7 @@ public class UserController {
 		params.setDr("0");
 		List<UserVO> users = userService.getUsers(params);
 
-		result.setTotal(userService.getUserCount());
+		result.setTotal(userService.getUserCount(params));
 		result.setRows(users);
 
 		String obj = JsonUtil.getInstance().toJson(result);

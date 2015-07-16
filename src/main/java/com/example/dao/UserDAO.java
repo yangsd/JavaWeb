@@ -86,7 +86,7 @@ public interface UserDao {
 	 * @return
 	 * @throws BusinessException
 	 */
-	public int getUserCount() throws BusinessException;
+	public int getUserCount(UserQueryCondition params) throws BusinessException;
 
 	/**
 	 * ≤È—Ø”√ªß

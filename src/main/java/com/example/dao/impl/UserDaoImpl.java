@@ -83,8 +83,8 @@ public class UserDaoImpl extends BaseDAO implements UserDao {
 
 	}
 
-	public int getUserCount() throws BusinessException {
-		return sqlSession.selectOne(NAMESPACE + "selectUserCount");
+	public int getUserCount(UserQueryCondition params) throws BusinessException {
+		return sqlSession.selectOne(NAMESPACE + "selectUserCount",params);
 	}
 
 	public List<UserVO> getUsers(UserQueryCondition params)

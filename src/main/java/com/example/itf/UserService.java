@@ -29,7 +29,7 @@ public interface UserService {
 
 	public List<UserVO> getAllUser() throws BusinessException;
 
-	public int getUserCount() throws BusinessException;
+	public int getUserCount(UserQueryCondition params) throws BusinessException;
 
 	public List<UserVO> getUsers(UserQueryCondition params)
 			throws BusinessException;
